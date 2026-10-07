@@ -1,8 +1,13 @@
 import fried.Time;
 import fried.physics.Collider;
+import fried.physics.Physics;
 import fried.scene.Component;
 
 class Projectile extends Component {
+	static inline var DAMAGE = 1;
+
+	static var overlapping:Array<Collider> = [];
+
 	var velocityX:Float = 0;
 	var velocityY:Float = 0;
 
@@ -34,6 +39,18 @@ class Projectile extends Component {
 		transform.translate(velocityX * Time.deltaSeconds, velocityY * Time.deltaSeconds);
 		if (collider.right < 0 || collider.left > World.WIDTH || collider.bottom < 0 || collider.top > World.HEIGHT) {
 			deactivate();
+			return;
+		}
+
+		Physics.overlapBoxAll(gameObject.scene, collider.left, collider.top, collider.right - collider.left, collider.bottom - collider.top,
+			overlapping, collider);
+		for (other in overlapping) {
+			var enemy = other.gameObject.getComponent(Enemy);
+			if (enemy != null) {
+				enemy.health.takeDamage(DAMAGE);
+				deactivate();
+				return;
+			}
 		}
 	}
 }

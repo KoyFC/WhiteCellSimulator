@@ -2,33 +2,53 @@ import fried.Time;
 import fried.physics.Collider;
 import fried.physics.Physics;
 import fried.scene.Component;
+import fried.scene.Sprite;
 
 class Enemy extends Component {
 	static inline var BASE_SPEED = 50;
 	static inline var SPEED_PER_STEP = 10;
 	static inline var MAX_SPEED = 150;
+	static inline var MAX_HEALTH = 3;
+	static inline var INVINCIBILITY_TIME = 0.5;
+	static inline var CONTACT_DAMAGE = 1;
+	static inline var BASE_POINTS = 10;
+	static inline var POINTS_PER_STEP = 5;
 
 	static var overlapping:Array<Collider> = [];
 
-	var target:Collider;
+	var target:Player;
 
 	public var collider(default, null):Collider;
+	public var health(default, null):Health;
 
-	public function new(collider:Collider, target:Collider) {
+	public function new(collider:Collider, target:Player) {
 		super();
 		this.collider = collider;
 		this.target = target;
 	}
 
+	override function start():Void {
+		health = gameObject.addComponent(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
+		health.onDeath = function() {
+			GameState.addScore(BASE_POINTS + GameState.difficultyStep() * POINTS_PER_STEP);
+			gameObject.destroy();
+		};
+		gameObject.addComponent(new InvincibilityBlink(gameObject.getComponent(Sprite), health));
+	}
+
 	override function update():Void {
-		var dx = target.centerX - collider.centerX;
-		var dy = target.centerY - collider.centerY;
+		var targetCollider = target.collider;
+		if (collider.overlaps(targetCollider)) {
+			target.health.takeDamage(CONTACT_DAMAGE);
+			gameObject.destroy();
+			return;
+		}
+
+		var dx = targetCollider.centerX - collider.centerX;
+		var dy = targetCollider.centerY - collider.centerY;
 		var distance = Math.sqrt(dx * dx + dy * dy);
 		if (distance > 0) {
 			transform.rotation = Math.atan2(dy, dx) * 180 / Math.PI + 90;
-		}
-
-		if (!collider.overlaps(target) && distance > 0) {
 			var step = Math.min(MAX_SPEED, BASE_SPEED + GameState.difficultyStep() * SPEED_PER_STEP) * Time.deltaSeconds;
 			transform.translate(dx / distance * step, dy / distance * step);
 		}

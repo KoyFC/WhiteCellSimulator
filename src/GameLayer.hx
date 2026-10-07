@@ -16,6 +16,7 @@ class GameLayer extends SceneLayer {
 	static inline var PROJECTILE_POOL_SIZE = 20;
 
 	public var player(default, null):Player;
+	public var isGameOver(default, null):Bool = false;
 
 	public function new(renderer:Renderer) {
 		super(new Scene("Game"));
@@ -37,10 +38,14 @@ class GameLayer extends SceneLayer {
 		playerObject.transform.x = (World.WIDTH - (player.collider.right - player.collider.left)) / 2;
 		playerObject.transform.y = (World.HEIGHT - (player.collider.bottom - player.collider.top)) / 2;
 
+		player.health.onDeath = function() {
+			isGameOver = true;
+		};
+
 		cameraObject.addComponent(new CameraFollow(player.collider, renderer));
 
 		GameState.reset();
 		var spawner = scene.add(new GameObject("EnemySpawner"));
-		spawner.addComponent(new EnemySpawner(Texture.from(renderer, Assets.game("virus.bmp")), player.collider));
+		spawner.addComponent(new EnemySpawner(Texture.from(renderer, Assets.game("virus.bmp")), player));
 	}
 }

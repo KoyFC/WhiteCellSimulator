@@ -20,6 +20,8 @@ class Player extends Component {
 	static inline var SHOOT_COOLDOWN = 0.1;
 	static inline var SHOOTING_SPEED_FACTOR = 0.5;
 	static inline var PROJECTILE_SPEED = 500;
+	static inline var MAX_HEALTH = 3;
+	static inline var INVINCIBILITY_TIME = 1.5;
 
 	var speed:Float;
 	var renderer:Renderer;
@@ -29,6 +31,7 @@ class Player extends Component {
 	var sprite:Sprite;
 
 	public var collider(default, null):Collider;
+	public var health(default, null):Health;
 
 	var shootCooldown:Float = 0;
 	var aimX:Float = 0;
@@ -49,6 +52,8 @@ class Player extends Component {
 		var texture = Texture.from(renderer, Assets.game("white.bmp"));
 		sprite = gameObject.addComponent(new Sprite(texture));
 		collider = gameObject.addComponent(new Collider(texture.width, texture.height));
+		health = gameObject.addComponent(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
+		gameObject.addComponent(new InvincibilityBlink(sprite, health));
 		lastMouseX = Input.mouseX;
 		lastMouseY = Input.mouseY;
 	}

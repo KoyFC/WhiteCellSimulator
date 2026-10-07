@@ -16,11 +16,11 @@ class EnemySpawner extends Component {
 	static inline var PRIORITY = 8;
 
 	var texture:Texture;
-	var target:Collider;
+	var target:Player;
 	var enemies:Array<Enemy> = [];
 	var spawnTimer:Float = BASE_INTERVAL;
 
-	public function new(texture:Texture, target:Collider) {
+	public function new(texture:Texture, target:Player) {
 		super();
 		this.texture = texture;
 		this.target = target;
@@ -69,8 +69,8 @@ class EnemySpawner extends Component {
 	}
 
 	function distanceToTarget(x:Float, y:Float):Float {
-		var dx = x - target.centerX;
-		var dy = y - target.centerY;
+		var dx = x - target.collider.centerX;
+		var dy = y - target.collider.centerY;
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 }
