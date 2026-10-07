@@ -32,8 +32,10 @@ class Player extends Component {
 	}
 
 	override function update():Void {
-		var dx = Input.getGamepadAxis(GamepadAxis.LeftX);
-		var dy = Input.getGamepadAxis(GamepadAxis.LeftY);
+		var dx:Float = 0;
+		var dy:Float = 0;
+		dx += Input.getGamepadAxis(GamepadAxis.LeftX);
+		dy += Input.getGamepadAxis(GamepadAxis.LeftY);
 
 		if (Input.isKeyPressed(Key.Left) || Input.isKeyPressed(Key.A)) {
 			dx -= 1;
