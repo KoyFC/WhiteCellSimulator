@@ -124,8 +124,7 @@ class Player extends Component {
 		}
 
 		transform.translate(dx * currentSpeed * Time.deltaSeconds, dy * currentSpeed * Time.deltaSeconds);
-		transform.x += World.clamp(collider.left, 0, World.WIDTH - (collider.right - collider.left)) - collider.left;
-		transform.y += World.clamp(collider.top, 0, World.HEIGHT - (collider.bottom - collider.top)) - collider.top;
+		World.keepInside(collider);
 	}
 
 	static function axis(negativeKey:Key, positiveKey:Key, negativeButton:GamepadButton, positiveButton:GamepadButton):Float {

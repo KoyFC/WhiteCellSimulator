@@ -1,5 +1,7 @@
 import fried.graphics.Color;
 import fried.graphics.Renderer;
+import fried.graphics.Texture;
+import fried.io.Assets;
 import fried.scene.Camera;
 import fried.scene.GameObject;
 import fried.scene.Scene;
@@ -36,5 +38,9 @@ class GameLayer extends SceneLayer {
 		playerObject.transform.y = (World.HEIGHT - (player.collider.bottom - player.collider.top)) / 2;
 
 		cameraObject.addComponent(new CameraFollow(player.collider, renderer));
+
+		GameState.reset();
+		var spawner = scene.add(new GameObject("EnemySpawner"));
+		spawner.addComponent(new EnemySpawner(Texture.from(renderer, Assets.game("virus.bmp")), player.collider));
 	}
 }
