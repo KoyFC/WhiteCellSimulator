@@ -18,7 +18,7 @@ class GameLayer extends SceneLayer {
 	public var player(default, null):Player;
 	public var isGameOver(default, null):Bool = false;
 
-	public function new(renderer:Renderer) {
+	public function new(renderer:Renderer, ?touchPad:Renderer) {
 		super(new Scene("Game"));
 
 		var background = scene.add(new GameObject("Background"));
@@ -34,7 +34,7 @@ class GameLayer extends SceneLayer {
 		var playerObject = scene.add(new GameObject("Player"));
 		playerObject.priority = PLAYER_PRIORITY;
 		playerObject.transform.setScale(PLAYER_SCALE);
-		player = playerObject.addComponent(new Player(renderer, camera, projectiles, PLAYER_SPEED));
+		player = playerObject.addComponent(new Player(renderer, camera, projectiles, PLAYER_SPEED, touchPad));
 		playerObject.transform.x = (World.WIDTH - (player.collider.right - player.collider.left)) / 2;
 		playerObject.transform.y = (World.HEIGHT - (player.collider.bottom - player.collider.top)) / 2;
 

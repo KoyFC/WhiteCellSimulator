@@ -1,6 +1,5 @@
 import fried.graphics.Color;
 import fried.graphics.Font;
-import fried.graphics.Renderer;
 import fried.io.Assets;
 import fried.scene.Scene;
 import fried.scene.SceneLayer;
@@ -13,7 +12,6 @@ class HudLayer extends SceneLayer {
 	static inline var PADDING_Y = 5;
 	static inline var LINE_SPACING = 5;
 
-	var screenWidth:Int;
 	var player:Player;
 
 	var livesText:Text;
@@ -24,9 +22,8 @@ class HudLayer extends SceneLayer {
 	var shownScore:Int = -1;
 	var shownHighScore:Int = -1;
 
-	public function new(renderer:Renderer, player:Player) {
+	public function new(player:Player) {
 		super(new Scene("HUD"));
-		screenWidth = renderer.width;
 		this.player = player;
 
 		var font = Font.from(Assets.engine("NunitoSans.ttf"), FONT_SIZE);
@@ -45,6 +42,8 @@ class HudLayer extends SceneLayer {
 
 	override function update():Void {
 		refresh();
+		highScoreText.transform.x = renderer.width - MARGIN - PADDING_X - highScoreText.width;
+		scoreText.transform.x = renderer.width - MARGIN - PADDING_X - scoreText.width;
 		super.update();
 	}
 
@@ -56,12 +55,10 @@ class HudLayer extends SceneLayer {
 		if (GameState.highScore != shownHighScore) {
 			shownHighScore = GameState.highScore;
 			highScoreText.text = 'Hi-Score: $shownHighScore';
-			highScoreText.transform.x = screenWidth - MARGIN - PADDING_X - highScoreText.width;
 		}
 		if (GameState.score != shownScore) {
 			shownScore = GameState.score;
 			scoreText.text = 'Score: $shownScore';
-			scoreText.transform.x = screenWidth - MARGIN - PADDING_X - scoreText.width;
 		}
 	}
 }

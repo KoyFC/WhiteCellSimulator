@@ -31,11 +31,15 @@ class Checkerboard extends Component {
 
 		var camera = gameObject.scene.camera;
 		var renderer = DrawQueue.currentRenderTarget;
-		if (camera != null && renderer != null) {
-			firstX = Std.int(Math.max(0, Math.floor(camera.screenToWorldX(0, renderer) / tileSize)));
-			firstY = Std.int(Math.max(0, Math.floor(camera.screenToWorldY(0, renderer) / tileSize)));
-			lastX = Std.int(Math.min(lastX, Math.floor(camera.screenToWorldX(renderer.width, renderer) / tileSize)));
-			lastY = Std.int(Math.min(lastY, Math.floor(camera.screenToWorldY(renderer.height, renderer) / tileSize)));
+		if (renderer != null) {
+			var left = camera != null ? camera.screenToWorldX(0, renderer) : 0;
+			var top = camera != null ? camera.screenToWorldY(0, renderer) : 0;
+			var right = camera != null ? camera.screenToWorldX(renderer.width, renderer) : renderer.width;
+			var bottom = camera != null ? camera.screenToWorldY(renderer.height, renderer) : renderer.height;
+			firstX = Std.int(Math.max(0, Math.floor(left / tileSize)));
+			firstY = Std.int(Math.max(0, Math.floor(top / tileSize)));
+			lastX = Std.int(Math.min(lastX, Math.floor(right / tileSize)));
+			lastY = Std.int(Math.min(lastY, Math.floor(bottom / tileSize)));
 		}
 
 		for (y in firstY...lastY + 1) {

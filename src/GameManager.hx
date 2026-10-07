@@ -4,27 +4,29 @@ import fried.scene.SceneLayer;
 
 class GameManager {
 	var renderer:Renderer;
+	var touchPad:Null<Renderer>;
 	var game:GameLayer;
 	var hud:HudLayer;
 	var menu:MenuLayer;
 
-	public function new(renderer:Renderer) {
+	public function new(renderer:Renderer, ?touchPad:Renderer) {
 		this.renderer = renderer;
+		this.touchPad = touchPad;
 		GameState.loadHighScore();
-		menu = renderer.pushLayer(new StartLayer(renderer));
+		menu = renderer.pushLayer(new StartLayer());
 	}
 
 	public function update():Void {
 		if (menu != null && menu.isConfirmed) {
 			close(menu);
 			menu = null;
-			game = renderer.pushLayer(new GameLayer(renderer));
-			hud = renderer.pushLayer(new HudLayer(renderer, game.player));
+			game = renderer.pushLayer(new GameLayer(renderer, touchPad));
+			hud = renderer.pushLayer(new HudLayer(game.player));
 		} else if (game != null && game.isGameOver) {
 			Log.info('Game over with ${GameState.score} points, high score ${GameState.highScore}');
 			GameState.saveHighScore();
 			closeGame();
-			menu = renderer.pushLayer(new GameOverLayer(renderer));
+			menu = renderer.pushLayer(new GameOverLayer());
 		}
 	}
 
