@@ -1,0 +1,33 @@
+{
+	"name": "WhiteCellSimulator",
+	"organization": "KoyFC",
+	"version": "01.00",
+	"window": {
+		"title": "WhiteCellSimulator"
+	},
+	"pc": {
+		"display": {
+			"mode": "default",
+			"filter": "nearest"
+		}
+	},
+	"vita": {
+		"titleId": "WHIT00001",
+		"display": {
+			"mode": "default",
+			"filter": "nearest"
+		}
+	},
+	"switch": {
+		"display": {
+			"mode": "default",
+			"filter": "nearest"
+		}
+	},
+	"3ds": {
+		"display": {
+			"mode": "default",
+			"filter": "nearest"
+		}
+	}
+}

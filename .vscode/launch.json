@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug WhiteCellSimulator",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/whitecellsimulator",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "preLaunchTask": "Build WhiteCellSimulator",
+            "externalConsole": false,
+            "pipeTransport": {
+                "pipeProgram": "${workspaceFolder}/.vscode/host-run.sh",
+                "pipeArgs": [],
+                "debuggerPath": "gdb",
+                "pipeCwd": "${workspaceFolder}",
+                "quoteArgs": false
+            }
+        }
+    ]
+}
