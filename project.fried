@@ -1,33 +1,33 @@
 {
-	"name": "WhiteCellSimulator",
-	"organization": "KoyFC",
-	"version": "01.00",
-	"window": {
-		"title": "WhiteCellSimulator"
-	},
-	"pc": {
+	"3ds": {
 		"display": {
-			"mode": "default",
-			"filter": "nearest"
+			"filter": "nearest",
+			"mode": "default"
 		}
 	},
-	"vita": {
-		"titleId": "WHIT00001",
+	"name": "WhiteCellSimulator",
+	"organization": "KoyFC",
+	"pc": {
 		"display": {
-			"mode": "default",
-			"filter": "nearest"
+			"filter": "nearest",
+			"mode": "default"
 		}
 	},
 	"switch": {
 		"display": {
-			"mode": "default",
-			"filter": "nearest"
+			"filter": "nearest",
+			"mode": "default"
 		}
 	},
-	"3ds": {
+	"version": "01.00",
+	"vita": {
 		"display": {
-			"mode": "default",
-			"filter": "nearest"
-		}
+			"filter": "nearest",
+			"mode": "default"
+		},
+		"titleId": "WHIT00001"
+	},
+	"window": {
+		"title": "WhiteCellSimulator"
 	}
 }
