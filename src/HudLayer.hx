@@ -32,7 +32,7 @@ class HudLayer extends SceneLayer {
 		paddingX = Screen.scale(PADDING_X);
 		var paddingY = Screen.scale(PADDING_Y);
 
-		var font = Font.from(Assets.engine("NunitoSans.ttf"), Screen.scale(FONT_SIZE));
+		var font = Font.from(Assets.engine("NunitoSans.ttf"), Screen.fontSize(FONT_SIZE));
 		var background = Color.rgb(0, 0, 0);
 		livesText = Label.create(scene, font, "", Color.rgb(255, 0, 0), background, paddingX, paddingY);
 		highScoreText = Label.create(scene, font, "", Color.rgb(255, 255, 0), background, paddingX, paddingY);

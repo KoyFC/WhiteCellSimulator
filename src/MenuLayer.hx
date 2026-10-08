@@ -34,7 +34,7 @@ class MenuLayer extends SceneLayer {
 	}
 
 	function addLine(content:String, size:Int, color:Color, topFraction:Float):Text {
-		var font = Font.from(Assets.engine("NunitoSans.ttf"), Screen.scale(size));
+		var font = Font.from(Assets.engine("NunitoSans.ttf"), Screen.fontSize(size));
 		var text = Label.create(scene, font, content, color, Color.rgb(0, 0, 0), Screen.scale(PADDING_X), Screen.scale(PADDING_Y));
 		lines.push(text);
 		lineFractions.push(topFraction);
