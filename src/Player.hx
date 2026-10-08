@@ -13,8 +13,10 @@ import fried.scene.Camera;
 import fried.scene.Component;
 import fried.scene.Sprite;
 
-// Twin stick controls: WASD, the digits 8, 4, 5 or 2 and 6, or the left stick
-// move, and the arrows, the d-pad, the right stick, a touch or the mouse aim.
+// Twin stick controls: WASD or the left stick move, and the arrows, the d-pad,
+// the right stick, a touch or the mouse aim. On a small screen, which is the
+// calculator's, the arrows move instead and the digits 1 to 9 aim the way they
+// sit around 5, 9 up and right and 1 down and left.
 // Aiming with a key, a stick or a touch fires on its own, the mouse fires while
 // its left button is held, and either way the player moves at half speed while
 // shooting. With a touch pad, a touch aims from the pad's centre rather than at
@@ -77,7 +79,10 @@ class Player extends Component {
 
 		var shootX = Input.getGamepadAxis(GamepadAxis.RightX);
 		var shootY = Input.getGamepadAxis(GamepadAxis.RightY);
-		if (shootX == 0 && shootY == 0) {
+		if (shootX == 0 && shootY == 0 && Screen.isSmall) {
+			shootX = keyAxis(Key.Num7, Key.Num9) + keyAxis(Key.Num4, Key.Num6) + keyAxis(Key.Num1, Key.Num3);
+			shootY = keyAxis(Key.Num7, Key.Num1) + keyAxis(Key.Num8, Key.Num2) + keyAxis(Key.Num9, Key.Num3);
+		} else if (shootX == 0 && shootY == 0) {
 			shootX = axis(Key.Left, Key.Right, GamepadButton.DpadLeft, GamepadButton.DpadRight);
 			shootY = axis(Key.Up, Key.Down, GamepadButton.DpadUp, GamepadButton.DpadDown);
 		}
@@ -135,17 +140,21 @@ class Player extends Component {
 	function move(currentSpeed:Float):Void {
 		var dx = Input.getGamepadAxis(GamepadAxis.LeftX);
 		var dy = Input.getGamepadAxis(GamepadAxis.LeftY);
-		if (Input.isKeyPressed(Key.A) || Input.isKeyPressed(Key.Num4)) {
+		if (Input.isKeyPressed(Key.A)) {
 			dx -= 1;
 		}
-		if (Input.isKeyPressed(Key.D) || Input.isKeyPressed(Key.Num6)) {
+		if (Input.isKeyPressed(Key.D)) {
 			dx += 1;
 		}
-		if (Input.isKeyPressed(Key.W) || Input.isKeyPressed(Key.Num8)) {
+		if (Input.isKeyPressed(Key.W)) {
 			dy -= 1;
 		}
-		if (Input.isKeyPressed(Key.S) || Input.isKeyPressed(Key.Num5) || Input.isKeyPressed(Key.Num2)) {
+		if (Input.isKeyPressed(Key.S)) {
 			dy += 1;
+		}
+		if (Screen.isSmall) {
+			dx += keyAxis(Key.Left, Key.Right);
+			dy += keyAxis(Key.Up, Key.Down);
 		}
 
 		// Normalised only past unit length, so a stick held halfway still walks
@@ -158,6 +167,17 @@ class Player extends Component {
 
 		transform.translate(dx * currentSpeed * Time.deltaSeconds, dy * currentSpeed * Time.deltaSeconds);
 		World.keepInside(collider);
+	}
+
+	static function keyAxis(negativeKey:Key, positiveKey:Key):Float {
+		var value:Float = 0;
+		if (Input.isKeyPressed(negativeKey)) {
+			value -= 1;
+		}
+		if (Input.isKeyPressed(positiveKey)) {
+			value += 1;
+		}
+		return value;
 	}
 
 	static function axis(negativeKey:Key, positiveKey:Key, negativeButton:GamepadButton, positiveButton:GamepadButton):Float {
