@@ -20,6 +20,7 @@ class Main {
 
 		var renderer = Application.createRenderer(window);
 		renderer.drawColor = Color.rgb(24, 24, 32);
+		Screen.init(renderer);
 
 		var touchWindow:Window = null;
 		var touchRenderer:Renderer = null;

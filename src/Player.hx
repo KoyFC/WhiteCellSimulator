@@ -1,4 +1,5 @@
 import fried.Time;
+import fried.audio.Sound;
 import fried.graphics.Renderer;
 import fried.graphics.Texture;
 import fried.input.GamepadAxis;
@@ -12,12 +13,13 @@ import fried.scene.Camera;
 import fried.scene.Component;
 import fried.scene.Sprite;
 
-// Twin stick controls: WASD or the left stick move, and the arrows, the d-pad,
-// the right stick, a touch or the mouse aim. Aiming with a key, a stick or a
-// touch fires on its own, the mouse fires while its left button is held, and
-// either way the player moves at half speed while shooting. With a touch pad,
-// a touch aims from the pad's centre rather than at the point of the world it
-// lands on, which is how the 3DS aims from its bottom screen.
+// Twin stick controls: WASD, the digits 8, 4, 5 or 2 and 6, or the left stick
+// move, and the arrows, the d-pad, the right stick, a touch or the mouse aim.
+// Aiming with a key, a stick or a touch fires on its own, the mouse fires while
+// its left button is held, and either way the player moves at half speed while
+// shooting. With a touch pad, a touch aims from the pad's centre rather than at
+// the point of the world it lands on, which is how the 3DS aims from its bottom
+// screen.
 class Player extends Component {
 	static inline var SHOOT_COOLDOWN = 0.1;
 	static inline var SHOOTING_SPEED_FACTOR = 0.5;
@@ -32,6 +34,7 @@ class Player extends Component {
 	var touchPad:Null<Renderer>;
 
 	var sprite:Sprite;
+	var shootSound:Sound;
 
 	public var collider(default, null):Collider;
 	public var health(default, null):Health;
@@ -53,11 +56,16 @@ class Player extends Component {
 	}
 
 	override function start():Void {
-		var texture = Texture.from(renderer, Assets.game("white.bmp"));
+		var texture = Texture.from(renderer, Assets.game("white.png"));
 		sprite = gameObject.addComponent(new Sprite(texture));
 		collider = gameObject.addComponent(new Collider(texture.width, texture.height));
 		health = gameObject.addComponent(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
 		gameObject.addComponent(new InvincibilityBlink(sprite, health));
+		shootSound = Sound.from(Assets.game("sounds/shoot.wav"));
+		var hurtSound = Sound.from(Assets.game("sounds/player_hurt.wav"));
+		health.onDamage = function(_) {
+			hurtSound.play();
+		};
 		lastMouseX = Input.mouseX;
 		lastMouseY = Input.mouseY;
 	}
@@ -108,6 +116,7 @@ class Player extends Component {
 		if (isShooting && shootCooldown <= 0 && (aimX != 0 || aimY != 0)) {
 			projectiles.fire(collider.centerX, collider.centerY, aimX, aimY, PROJECTILE_SPEED);
 			shootCooldown = SHOOT_COOLDOWN;
+			shootSound.play();
 		}
 	}
 
@@ -126,16 +135,16 @@ class Player extends Component {
 	function move(currentSpeed:Float):Void {
 		var dx = Input.getGamepadAxis(GamepadAxis.LeftX);
 		var dy = Input.getGamepadAxis(GamepadAxis.LeftY);
-		if (Input.isKeyPressed(Key.A)) {
+		if (Input.isKeyPressed(Key.A) || Input.isKeyPressed(Key.Num4)) {
 			dx -= 1;
 		}
-		if (Input.isKeyPressed(Key.D)) {
+		if (Input.isKeyPressed(Key.D) || Input.isKeyPressed(Key.Num6)) {
 			dx += 1;
 		}
-		if (Input.isKeyPressed(Key.W)) {
+		if (Input.isKeyPressed(Key.W) || Input.isKeyPressed(Key.Num8)) {
 			dy -= 1;
 		}
-		if (Input.isKeyPressed(Key.S)) {
+		if (Input.isKeyPressed(Key.S) || Input.isKeyPressed(Key.Num5) || Input.isKeyPressed(Key.Num2)) {
 			dy += 1;
 		}
 

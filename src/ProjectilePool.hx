@@ -16,7 +16,7 @@ class ProjectilePool {
 
 	public function new(scene:Scene, renderer:Renderer, initialSize:Int) {
 		this.scene = scene;
-		texture = Texture.from(renderer, Assets.game("anticuerpo.bmp"));
+		texture = Texture.from(renderer, Assets.game("anticuerpo.png"));
 		for (i in 0...initialSize) {
 			create();
 		}

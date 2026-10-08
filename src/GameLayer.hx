@@ -26,7 +26,7 @@ class GameLayer extends SceneLayer {
 		background.addComponent(new Checkerboard(World.WIDTH, World.HEIGHT, TILE_SIZE, Color.rgb(110, 50, 50), Color.rgb(135, 70, 70)));
 
 		var cameraObject = scene.add(new GameObject("Camera"));
-		var camera = cameraObject.addComponent(new Camera());
+		var camera = cameraObject.addComponent(new Camera(Screen.zoom));
 		scene.camera = camera;
 
 		var projectiles = new ProjectilePool(scene, renderer, PROJECTILE_POOL_SIZE);
@@ -46,6 +46,6 @@ class GameLayer extends SceneLayer {
 
 		GameState.reset();
 		var spawner = scene.add(new GameObject("EnemySpawner"));
-		spawner.addComponent(new EnemySpawner(Texture.from(renderer, Assets.game("virus.bmp")), player));
+		spawner.addComponent(new EnemySpawner(Texture.from(renderer, Assets.game("virus.png")), player));
 	}
 }

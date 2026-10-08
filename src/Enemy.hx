@@ -1,4 +1,6 @@
 import fried.Time;
+import fried.audio.Sound;
+import fried.io.Assets;
 import fried.physics.Collider;
 import fried.physics.Physics;
 import fried.scene.Component;
@@ -29,7 +31,15 @@ class Enemy extends Component {
 
 	override function start():Void {
 		health = gameObject.addComponent(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
+		var hitSound = Sound.from(Assets.game("sounds/enemy_hit.wav"));
+		var deathSound = Sound.from(Assets.game("sounds/enemy_death.wav"));
+		health.onDamage = function(_) {
+			if (health.isAlive) {
+				hitSound.play();
+			}
+		};
 		health.onDeath = function() {
+			deathSound.play();
 			GameState.addScore(BASE_POINTS + GameState.difficultyStep() * POINTS_PER_STEP);
 			gameObject.destroy();
 		};

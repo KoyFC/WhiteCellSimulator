@@ -13,6 +13,8 @@ class HudLayer extends SceneLayer {
 	static inline var LINE_SPACING = 5;
 
 	var player:Player;
+	var margin:Int;
+	var paddingX:Int;
 
 	var livesText:Text;
 	var scoreText:Text;
@@ -26,24 +28,28 @@ class HudLayer extends SceneLayer {
 		super(new Scene("HUD"));
 		this.player = player;
 
-		var font = Font.from(Assets.engine("NunitoSans.ttf"), FONT_SIZE);
-		var background = Color.rgb(0, 0, 0);
-		livesText = Label.create(scene, font, "", Color.rgb(255, 0, 0), background, PADDING_X, PADDING_Y);
-		highScoreText = Label.create(scene, font, "", Color.rgb(255, 255, 0), background, PADDING_X, PADDING_Y);
-		scoreText = Label.create(scene, font, "", Color.rgb(255, 255, 255), background, PADDING_X, PADDING_Y);
+		margin = Screen.scale(MARGIN);
+		paddingX = Screen.scale(PADDING_X);
+		var paddingY = Screen.scale(PADDING_Y);
 
-		livesText.transform.x = MARGIN + PADDING_X;
-		livesText.transform.y = MARGIN + PADDING_Y;
-		highScoreText.transform.y = MARGIN + PADDING_Y;
-		scoreText.transform.y = highScoreText.transform.y + highScoreText.height + PADDING_Y * 2 + LINE_SPACING;
+		var font = Font.from(Assets.engine("NunitoSans.ttf"), Screen.scale(FONT_SIZE));
+		var background = Color.rgb(0, 0, 0);
+		livesText = Label.create(scene, font, "", Color.rgb(255, 0, 0), background, paddingX, paddingY);
+		highScoreText = Label.create(scene, font, "", Color.rgb(255, 255, 0), background, paddingX, paddingY);
+		scoreText = Label.create(scene, font, "", Color.rgb(255, 255, 255), background, paddingX, paddingY);
+
+		livesText.transform.x = margin + paddingX;
+		livesText.transform.y = margin + paddingY;
+		highScoreText.transform.y = margin + paddingY;
+		scoreText.transform.y = highScoreText.transform.y + highScoreText.height + paddingY * 2 + Screen.scale(LINE_SPACING);
 
 		refresh();
 	}
 
 	override function update():Void {
 		refresh();
-		highScoreText.transform.x = renderer.width - MARGIN - PADDING_X - highScoreText.width;
-		scoreText.transform.x = renderer.width - MARGIN - PADDING_X - scoreText.width;
+		highScoreText.transform.x = renderer.width - margin - paddingX - highScoreText.width;
+		scoreText.transform.x = renderer.width - margin - paddingX - scoreText.width;
 		super.update();
 	}
 

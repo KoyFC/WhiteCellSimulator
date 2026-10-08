@@ -5,6 +5,11 @@
 			"width": 800
 		}
 	},
+	"cg50": {
+		"display": {
+			"mode": "default"
+		}
+	},
 	"display": {
 		"filter": "nearest",
 		"height": 540,
@@ -18,6 +23,6 @@
 		"titleId": "WHIT00001"
 	},
 	"window": {
-		"title": "WhiteCellSimulator"
+		"title": "Blood Borne Defense"
 	}
 }

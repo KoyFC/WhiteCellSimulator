@@ -34,15 +34,18 @@ class MenuLayer extends SceneLayer {
 	}
 
 	function addLine(content:String, size:Int, color:Color, topFraction:Float):Text {
-		var font = Font.from(Assets.engine("NunitoSans.ttf"), size);
-		var text = Label.create(scene, font, content, color, Color.rgb(0, 0, 0), PADDING_X, PADDING_Y);
+		var font = Font.from(Assets.engine("NunitoSans.ttf"), Screen.scale(size));
+		var text = Label.create(scene, font, content, color, Color.rgb(0, 0, 0), Screen.scale(PADDING_X), Screen.scale(PADDING_Y));
 		lines.push(text);
 		lineFractions.push(topFraction);
 		return text;
 	}
 
 	function confirmPrompt(action:String):String {
-		return Input.isGamepadConnected ? 'Press Start $action' : 'Press Space $action';
+		if (Input.isGamepadConnected) {
+			return 'Press Start $action';
+		}
+		return Screen.isSmall ? 'Press EXE $action' : 'Press Space $action';
 	}
 
 	override function update():Void {
