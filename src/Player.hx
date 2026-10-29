@@ -13,10 +13,10 @@ import fried.scene.Camera;
 import fried.scene.Component;
 import fried.scene.Sprite;
 
-// Twin stick controls: WASD or the left stick move, and the arrows, the d-pad,
-// the right stick, a touch or the mouse aim. On a small screen, which is the
-// calculator's, the arrows move instead and the digits 1 to 9 aim the way they
-// sit around 5, 9 up and right and 1 down and left.
+// Twin stick controls: WASD, the left stick or the d-pad move, and the arrows,
+// the face buttons, the right stick, a touch or the mouse aim. On a small
+// screen, which is the calculator's, the arrows move instead and the digits 1
+// to 9 aim the way they sit around 5, 9 up and right and 1 down and left.
 // Aiming with a key, a stick or a touch fires on its own, the mouse fires while
 // its left button is held, and either way the player moves at half speed while
 // shooting. With a touch pad, a touch aims from the pad's centre rather than at
@@ -83,8 +83,8 @@ class Player extends Component {
 			shootX = keyAxis(Key.Num7, Key.Num9) + keyAxis(Key.Num4, Key.Num6) + keyAxis(Key.Num1, Key.Num3);
 			shootY = keyAxis(Key.Num7, Key.Num1) + keyAxis(Key.Num8, Key.Num2) + keyAxis(Key.Num9, Key.Num3);
 		} else if (shootX == 0 && shootY == 0) {
-			shootX = axis(Key.Left, Key.Right, GamepadButton.DpadLeft, GamepadButton.DpadRight);
-			shootY = axis(Key.Up, Key.Down, GamepadButton.DpadUp, GamepadButton.DpadDown);
+			shootX = keyAxis(Key.Left, Key.Right) + buttonAxis(GamepadButton.West, GamepadButton.East);
+			shootY = keyAxis(Key.Up, Key.Down) + buttonAxis(GamepadButton.North, GamepadButton.South);
 		}
 		var isAimingWithStick = shootX != 0 || shootY != 0;
 		var isAimingWithTouch = !isAimingWithStick && Input.getTouchCount() > 0;
@@ -152,6 +152,8 @@ class Player extends Component {
 		if (Input.isKeyPressed(Key.S)) {
 			dy += 1;
 		}
+		dx += buttonAxis(GamepadButton.DpadLeft, GamepadButton.DpadRight);
+		dy += buttonAxis(GamepadButton.DpadUp, GamepadButton.DpadDown);
 		if (Screen.isSmall) {
 			dx += keyAxis(Key.Left, Key.Right);
 			dy += keyAxis(Key.Up, Key.Down);
@@ -180,12 +182,12 @@ class Player extends Component {
 		return value;
 	}
 
-	static function axis(negativeKey:Key, positiveKey:Key, negativeButton:GamepadButton, positiveButton:GamepadButton):Float {
+	static function buttonAxis(negativeButton:GamepadButton, positiveButton:GamepadButton):Float {
 		var value:Float = 0;
-		if (Input.isKeyPressed(negativeKey) || Input.isGamepadButtonPressed(negativeButton)) {
+		if (Input.isGamepadButtonPressed(negativeButton)) {
 			value -= 1;
 		}
-		if (Input.isKeyPressed(positiveKey) || Input.isGamepadButtonPressed(positiveButton)) {
+		if (Input.isGamepadButtonPressed(positiveButton)) {
 			value += 1;
 		}
 		return value;
