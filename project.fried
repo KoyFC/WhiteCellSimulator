@@ -16,6 +16,7 @@
 		"mode": "expand",
 		"width": 960
 	},
+	"gameClass": "game.WhiteCellGame",
 	"name": "WhiteCellSimulator",
 	"organization": "KoyFC",
 	"startScene": "start",
