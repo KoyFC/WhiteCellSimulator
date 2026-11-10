@@ -8,7 +8,7 @@ import fried.input.Input;
 
 class TouchPadLayer extends Layer {
 	static inline var BORDER = 2;
-	static inline var LINE = 2;
+	static inline var LINE = 4;
 	static inline var MARKER_SIZE = 12;
 
 	var lineColor:Color = Color.rgb(255, 255, 255);
