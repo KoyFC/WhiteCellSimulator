@@ -1,3 +1,5 @@
+package game;
+
 import fried.Log;
 import fried.io.UserData;
 
@@ -7,6 +9,7 @@ class GameState {
 
 	public static var score(default, null):Int = 0;
 	public static var highScore(default, null):Int = 0;
+	public static var lives:Int = 0;
 
 	static var savedHighScore:Int = 0;
 
@@ -23,6 +26,7 @@ class GameState {
 
 	public static function reset():Void {
 		score = 0;
+		lives = 0;
 	}
 
 	public static function loadHighScore():Void {

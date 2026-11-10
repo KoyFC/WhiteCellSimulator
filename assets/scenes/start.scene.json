@@ -1,0 +1,243 @@
+{
+	"name": "Start",
+	"objects": [
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"colorA": {
+						"a": 255,
+						"b": 50,
+						"g": 50,
+						"r": 110
+					},
+					"colorB": {
+						"a": 255,
+						"b": 70,
+						"g": 70,
+						"r": 135
+					},
+					"height": 4096,
+					"tileSize": 64,
+					"type": "Checkerboard",
+					"width": 4096
+				}
+			],
+			"id": "background",
+			"name": "Background",
+			"priority": -100
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"backgroundColor": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 0
+					},
+					"paddingX": 20,
+					"paddingY": 10,
+					"type": "Label"
+				},
+				{
+					"color": {
+						"a": 255,
+						"b": 255,
+						"g": 255,
+						"r": 255
+					},
+					"font": {
+						"path": "NunitoSans.ttf",
+						"root": "engine",
+						"size": 64
+					},
+					"text": "Blood Borne Defense",
+					"type": "Text"
+				},
+				{
+					"anchorX": 0.5,
+					"anchorY": 0.3333333333333333,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "ScreenAnchor"
+				}
+			],
+			"id": "title",
+			"name": "Title"
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"backgroundColor": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 0
+					},
+					"paddingX": 20,
+					"paddingY": 10,
+					"type": "Label"
+				},
+				{
+					"color": {
+						"a": 255,
+						"b": 0,
+						"g": 255,
+						"r": 255
+					},
+					"font": {
+						"path": "NunitoSans.ttf",
+						"root": "engine",
+						"size": 32
+					},
+					"text": "Hi-Score: 0",
+					"type": "Text"
+				},
+				{
+					"anchorX": 0.5,
+					"anchorY": 0.5,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "ScreenAnchor"
+				},
+				{
+					"format": "Hi-Score: {value}",
+					"source": "highScore",
+					"type": "TextBinding"
+				}
+			],
+			"id": "hiscore",
+			"name": "Hi-Score"
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"backgroundColor": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 0
+					},
+					"paddingX": 20,
+					"paddingY": 10,
+					"type": "Label"
+				},
+				{
+					"color": {
+						"a": 255,
+						"b": 0,
+						"g": 255,
+						"r": 255
+					},
+					"font": {
+						"path": "NunitoSans.ttf",
+						"root": "engine",
+						"size": 32
+					},
+					"text": "Press Space to Play",
+					"type": "Text"
+				},
+				{
+					"anchorX": 0.5,
+					"anchorY": 0.6666666666666666,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "ScreenAnchor"
+				},
+				{
+					"format": "Press {value} to Play",
+					"source": "confirmKey",
+					"type": "TextBinding"
+				}
+			],
+			"id": "prompt",
+			"name": "Prompt"
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"inputDelay": 0,
+					"nextScene": "game",
+					"type": "MenuController"
+				}
+			],
+			"id": "controller",
+			"name": "Controller"
+		}
+	],
+	"platforms": {
+		"cg50": {
+			"hiscore": {
+				"Label": {
+					"paddingX": 7,
+					"paddingY": 3
+				},
+				"Text": {
+					"font": {
+						"path": "NunitoSans.ttf",
+						"root": "engine",
+						"size": 9
+					}
+				}
+			},
+			"prompt": {
+				"Label": {
+					"paddingX": 7,
+					"paddingY": 3
+				},
+				"Text": {
+					"font": {
+						"path": "NunitoSans.ttf",
+						"root": "engine",
+						"size": 9
+					}
+				}
+			},
+			"title": {
+				"Label": {
+					"paddingX": 7,
+					"paddingY": 3
+				},
+				"Text": {
+					"font": {
+						"path": "NunitoSans.ttf",
+						"root": "engine",
+						"size": 18
+					}
+				}
+			}
+		}
+	},
+	"version": 1
+}

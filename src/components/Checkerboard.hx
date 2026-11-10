@@ -1,14 +1,18 @@
+package components;
+
 import fried.graphics.Color;
 import fried.graphics.DrawQueue;
 import fried.graphics.Rect;
 import fried.scene.Component;
 
+@:serializable
 class Checkerboard extends Component {
-	var tileSize:Int;
-	var width:Int;
-	var height:Int;
-	var colorA:Color;
-	var colorB:Color;
+	public var width:Int;
+	public var height:Int;
+	public var tileSize:Int;
+	public var colorA:Color;
+	public var colorB:Color;
+
 	var tile:Rect;
 
 	public function new(width:Int, height:Int, tileSize:Int, colorA:Color, colorB:Color) {
@@ -22,6 +26,8 @@ class Checkerboard extends Component {
 	}
 
 	override function draw():Void {
+		tile.width = tileSize;
+		tile.height = tileSize;
 		var tilesX = Math.ceil(width / tileSize);
 		var tilesY = Math.ceil(height / tileSize);
 		var firstX = 0;
@@ -29,13 +35,15 @@ class Checkerboard extends Component {
 		var lastX = tilesX - 1;
 		var lastY = tilesY - 1;
 
-		var camera = gameObject.scene.camera;
-		var renderer = DrawQueue.currentRenderTarget;
-		if (renderer != null) {
-			var left = camera != null ? camera.screenToWorldX(0, renderer) : 0;
-			var top = camera != null ? camera.screenToWorldY(0, renderer) : 0;
-			var right = camera != null ? camera.screenToWorldX(renderer.width, renderer) : renderer.width;
-			var bottom = camera != null ? camera.screenToWorldY(renderer.height, renderer) : renderer.height;
+		var scene = gameObject.scene;
+		var camera = scene.camera;
+		var viewWidth = scene.viewWidth;
+		var viewHeight = scene.viewHeight;
+		if (viewWidth > 0) {
+			var left = camera != null ? camera.screenToWorldX(0) : 0;
+			var top = camera != null ? camera.screenToWorldY(0) : 0;
+			var right = camera != null ? camera.screenToWorldX(viewWidth) : viewWidth;
+			var bottom = camera != null ? camera.screenToWorldY(viewHeight) : viewHeight;
 			firstX = Std.int(Math.max(0, Math.floor(left / tileSize)));
 			firstY = Std.int(Math.max(0, Math.floor(top / tileSize)));
 			lastX = Std.int(Math.min(lastX, Math.floor(right / tileSize)));

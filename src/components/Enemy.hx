@@ -1,4 +1,8 @@
+package components;
+
 import fried.Time;
+import game.GameState;
+import game.World;
 import fried.audio.Sound;
 import fried.io.Assets;
 import fried.physics.Collider;
@@ -43,7 +47,7 @@ class Enemy extends Component {
 			GameState.addScore(BASE_POINTS + GameState.difficultyStep() * POINTS_PER_STEP);
 			gameObject.destroy();
 		};
-		gameObject.addComponent(new InvincibilityBlink(gameObject.getComponent(Sprite), health));
+		gameObject.addComponent(new InvincibilityBlink());
 	}
 
 	override function update():Void {

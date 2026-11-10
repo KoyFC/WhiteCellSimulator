@@ -1,10 +1,15 @@
+package components;
+
 import fried.Time;
 import fried.graphics.Texture;
+import game.GameState;
+import game.World;
 import fried.physics.Collider;
 import fried.scene.Component;
 import fried.scene.GameObject;
 import fried.scene.Sprite;
 
+@:serializable
 class EnemySpawner extends Component {
 	static inline var INITIAL_ENEMIES = 4;
 	static inline var MAX_ENEMIES = 20;
@@ -15,18 +20,28 @@ class EnemySpawner extends Component {
 	static inline var SCALE = 2;
 	static inline var PRIORITY = 8;
 
-	var texture:Texture;
-	var target:Player;
+	public var texture:Texture;
+
+	// The object with the Player and the Collider that enemies come for.
+	public var target:GameObject;
+
+	var player:Player;
+	var targetCollider:Collider;
 	var enemies:Array<Enemy> = [];
 	var spawnTimer:Float = BASE_INTERVAL;
 
-	public function new(texture:Texture, target:Player) {
+	public function new(texture:Texture, target:GameObject) {
 		super();
 		this.texture = texture;
 		this.target = target;
 	}
 
 	override function start():Void {
+		player = target == null ? null : target.getComponent(Player);
+		targetCollider = target == null ? null : target.getComponent(Collider);
+		if (player == null || targetCollider == null) {
+			throw 'An EnemySpawner needs a target with a Player and a Collider.';
+		}
 		for (i in 0...INITIAL_ENEMIES) {
 			spawn();
 		}
@@ -65,12 +80,12 @@ class EnemySpawner extends Component {
 		object.transform.setScale(SCALE);
 		object.addComponent(new Sprite(texture));
 		var collider = object.addComponent(new Collider(texture.width, texture.height));
-		enemies.push(object.addComponent(new Enemy(collider, target)));
+		enemies.push(object.addComponent(new Enemy(collider, player)));
 	}
 
 	function distanceToTarget(x:Float, y:Float):Float {
-		var dx = x - target.collider.centerX;
-		var dy = y - target.collider.centerY;
+		var dx = x - targetCollider.centerX;
+		var dy = y - targetCollider.centerY;
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 }

@@ -1,3 +1,5 @@
+package game;
+
 import fried.physics.Collider;
 
 class World {

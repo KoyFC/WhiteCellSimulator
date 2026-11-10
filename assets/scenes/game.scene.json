@@ -1,0 +1,165 @@
+{
+	"camera": "camera",
+	"name": "Game",
+	"objects": [
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"colorA": {
+						"a": 255,
+						"b": 50,
+						"g": 50,
+						"r": 110
+					},
+					"colorB": {
+						"a": 255,
+						"b": 70,
+						"g": 70,
+						"r": 135
+					},
+					"height": 1080,
+					"tileSize": 64,
+					"type": "Checkerboard",
+					"width": 1920
+				}
+			],
+			"id": "background",
+			"name": "Background",
+			"priority": -100
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"type": "Camera",
+					"zoom": 1
+				},
+				{
+					"target": "player",
+					"type": "CameraFollow"
+				}
+			],
+			"id": "camera",
+			"name": "Camera"
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"initialSize": 20,
+					"texture": {
+						"path": "anticuerpo.png",
+						"root": "game"
+					},
+					"type": "ProjectilePool"
+				}
+			],
+			"id": "projectiles",
+			"name": "Projectiles"
+		},
+		{
+			"components": [
+				{
+					"scaleX": 4,
+					"scaleY": 4,
+					"type": "Transform",
+					"x": 920,
+					"y": 500
+				},
+				{
+					"texture": {
+						"path": "white.png",
+						"root": "game"
+					},
+					"type": "Sprite"
+				},
+				{
+					"height": 20,
+					"type": "Collider",
+					"width": 20
+				},
+				{
+					"invincibilityTime": 1.5,
+					"maxHealth": 3,
+					"type": "Health"
+				},
+				{
+					"type": "InvincibilityBlink"
+				},
+				{
+					"projectilePool": "projectiles",
+					"speed": 300,
+					"type": "Player",
+					"useDigitKeys": false
+				}
+			],
+			"id": "player",
+			"name": "Player",
+			"priority": 10
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"target": "player",
+					"texture": {
+						"path": "virus.png",
+						"root": "game"
+					},
+					"type": "EnemySpawner"
+				}
+			],
+			"id": "spawner",
+			"name": "EnemySpawner"
+		},
+		{
+			"components": [
+				{
+					"type": "Transform",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"gameOverScene": "gameover",
+					"interfaceScene": "hud",
+					"player": "player",
+					"type": "GameController"
+				}
+			],
+			"id": "controller",
+			"name": "Controller"
+		}
+	],
+	"platforms": {
+		"cg50": {
+			"camera": {
+				"Camera": {
+					"zoom": 0.4
+				}
+			},
+			"player": {
+				"Player": {
+					"useDigitKeys": true
+				}
+			}
+		}
+	},
+	"version": 1
+}

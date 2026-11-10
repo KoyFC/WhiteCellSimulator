@@ -1,7 +1,7 @@
+package components;
+
 import fried.Time;
 import fried.audio.Sound;
-import fried.graphics.Renderer;
-import fried.graphics.Texture;
 import fried.input.GamepadAxis;
 import fried.input.GamepadButton;
 import fried.input.Input;
@@ -11,29 +11,36 @@ import fried.io.Assets;
 import fried.physics.Collider;
 import fried.scene.Camera;
 import fried.scene.Component;
+import fried.scene.GameObject;
 import fried.scene.Sprite;
+import game.GameState;
+import game.TouchPad;
+import game.World;
 
 // Twin stick controls: WASD, the left stick or the d-pad move, and the arrows,
-// the face buttons, the right stick, a touch or the mouse aim. On a small
-// screen, which is the calculator's, the arrows move instead and the digits 1
-// to 9 aim the way they sit around 5, 9 up and right and 1 down and left.
+// the face buttons, the right stick, a touch or the mouse aim. With
+// useDigitKeys, which is the calculator's, the arrows move instead and the
+// digits 1 to 9 aim the way they sit around 5, 9 up and right and 1 down and left.
 // Aiming with a key, a stick or a touch fires on its own, the mouse fires while
 // its left button is held, and either way the player moves at half speed while
 // shooting. With a touch pad, a touch aims from the pad's centre rather than at
 // the point of the world it lands on, which is how the 3DS aims from its bottom
 // screen.
+@:serializable
 class Player extends Component {
 	static inline var SHOOT_COOLDOWN = 0.1;
 	static inline var SHOOTING_SPEED_FACTOR = 0.5;
 	static inline var PROJECTILE_SPEED = 500;
-	static inline var MAX_HEALTH = 3;
-	static inline var INVINCIBILITY_TIME = 1.5;
 
-	var speed:Float;
-	var renderer:Renderer;
+	public var speed:Float;
+
+	// The object with the ProjectilePool shots come from.
+	public var projectilePool:GameObject;
+
+	public var useDigitKeys:Bool;
+
 	var camera:Camera;
 	var projectiles:ProjectilePool;
-	var touchPad:Null<Renderer>;
 
 	var sprite:Sprite;
 	var shootSound:Sound;
@@ -48,24 +55,27 @@ class Player extends Component {
 	var lastMouseX:Int;
 	var lastMouseY:Int;
 
-	public function new(renderer:Renderer, camera:Camera, projectiles:ProjectilePool, speed:Float, ?touchPad:Renderer) {
+	public function new(speed:Float, projectilePool:GameObject, useDigitKeys:Bool = false) {
 		super();
-		this.renderer = renderer;
-		this.camera = camera;
-		this.projectiles = projectiles;
 		this.speed = speed;
-		this.touchPad = touchPad;
+		this.projectilePool = projectilePool;
+		this.useDigitKeys = useDigitKeys;
 	}
 
 	override function start():Void {
-		var texture = Texture.from(renderer, Assets.game("white.png"));
-		sprite = gameObject.addComponent(new Sprite(texture));
-		collider = gameObject.addComponent(new Collider(texture.width, texture.height));
-		health = gameObject.addComponent(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
-		gameObject.addComponent(new InvincibilityBlink(sprite, health));
+		camera = gameObject.scene.camera;
+		projectiles = projectilePool == null ? null : projectilePool.getComponent(ProjectilePool);
+		sprite = gameObject.getComponent(Sprite);
+		collider = gameObject.getComponent(Collider);
+		health = gameObject.getComponent(Health);
+		if (camera == null || projectiles == null || sprite == null || collider == null || health == null) {
+			throw 'A Player needs a scene camera, a projectile pool, and a Sprite, a Collider and a Health on ${gameObject.name}.';
+		}
+		GameState.lives = health.maxHealth;
 		shootSound = Sound.from(Assets.game("sounds/shoot.wav"));
 		var hurtSound = Sound.from(Assets.game("sounds/player_hurt.wav"));
 		health.onDamage = function(_) {
+			GameState.lives = health.current;
 			hurtSound.play();
 		};
 		lastMouseX = Input.mouseX;
@@ -79,7 +89,7 @@ class Player extends Component {
 
 		var shootX = Input.getGamepadAxis(GamepadAxis.RightX);
 		var shootY = Input.getGamepadAxis(GamepadAxis.RightY);
-		if (shootX == 0 && shootY == 0 && Screen.isSmall) {
+		if (shootX == 0 && shootY == 0 && useDigitKeys) {
 			shootX = keyAxis(Key.Num7, Key.Num9) + keyAxis(Key.Num4, Key.Num6) + keyAxis(Key.Num1, Key.Num3);
 			shootY = keyAxis(Key.Num7, Key.Num1) + keyAxis(Key.Num8, Key.Num2) + keyAxis(Key.Num9, Key.Num3);
 		} else if (shootX == 0 && shootY == 0) {
@@ -111,8 +121,8 @@ class Player extends Component {
 		} else if (isAimingWithPointer) {
 			// Recomputed every frame rather than when the mouse moves, since the
 			// camera moving under a still pointer changes what it points at.
-			aimX = camera.screenToWorldX(Input.mouseX, renderer) - collider.centerX;
-			aimY = camera.screenToWorldY(Input.mouseY, renderer) - collider.centerY;
+			aimX = camera.screenToWorldX(Input.mouseX) - collider.centerX;
+			aimY = camera.screenToWorldY(Input.mouseY) - collider.centerY;
 		}
 		if (aimX != 0 || aimY != 0) {
 			transform.rotation = Math.atan2(aimY, aimX) * 180 / Math.PI + 90;
@@ -128,13 +138,13 @@ class Player extends Component {
 	function aimAtTouch():Void {
 		var touchX = Input.getTouchX(0);
 		var touchY = Input.getTouchY(0);
-		if (touchPad != null) {
-			aimX = touchX - touchPad.width / 2;
-			aimY = touchY - touchPad.height / 2;
+		if (TouchPad.isAvailable) {
+			aimX = touchX - TouchPad.width / 2;
+			aimY = touchY - TouchPad.height / 2;
 			return;
 		}
-		aimX = camera.screenToWorldX(touchX, renderer) - collider.centerX;
-		aimY = camera.screenToWorldY(touchY, renderer) - collider.centerY;
+		aimX = camera.screenToWorldX(touchX) - collider.centerX;
+		aimY = camera.screenToWorldY(touchY) - collider.centerY;
 	}
 
 	function move(currentSpeed:Float):Void {
@@ -154,7 +164,7 @@ class Player extends Component {
 		}
 		dx += buttonAxis(GamepadButton.DpadLeft, GamepadButton.DpadRight);
 		dy += buttonAxis(GamepadButton.DpadUp, GamepadButton.DpadDown);
-		if (Screen.isSmall) {
+		if (useDigitKeys) {
 			dx += keyAxis(Key.Left, Key.Right);
 			dy += keyAxis(Key.Up, Key.Down);
 		}

@@ -1,22 +1,29 @@
-import fried.graphics.Renderer;
+package components;
+
 import fried.graphics.Texture;
-import fried.io.Assets;
 import fried.physics.Collider;
+import fried.scene.Component;
 import fried.scene.GameObject;
-import fried.scene.Scene;
 import fried.scene.Sprite;
 
-class ProjectilePool {
+// Keeps the projectiles of a scene and reuses them, since shooting makes a lot of them and they are cheap to hide.
+@:serializable
+class ProjectilePool extends Component {
 	static inline var SCALE = 1;
 	static inline var PRIORITY = 5;
 
-	var scene:Scene;
-	var texture:Texture;
+	public var texture:Texture;
+	public var initialSize:Int;
+
 	var projectiles:Array<Projectile> = [];
 
-	public function new(scene:Scene, renderer:Renderer, initialSize:Int) {
-		this.scene = scene;
-		texture = Texture.from(renderer, Assets.game("anticuerpo.png"));
+	public function new(texture:Texture, initialSize:Int) {
+		super();
+		this.texture = texture;
+		this.initialSize = initialSize;
+	}
+
+	override function start():Void {
 		for (i in 0...initialSize) {
 			create();
 		}
@@ -38,7 +45,7 @@ class ProjectilePool {
 	}
 
 	function create():Projectile {
-		var object = scene.add(new GameObject("Projectile"));
+		var object = gameObject.scene.add(new GameObject("Projectile"));
 		object.priority = PRIORITY;
 		object.transform.setScale(SCALE);
 		object.addComponent(new Sprite(texture));

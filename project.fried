@@ -18,6 +18,7 @@
 	},
 	"name": "WhiteCellSimulator",
 	"organization": "KoyFC",
+	"startScene": "start",
 	"version": "01.00",
 	"vita": {
 		"titleId": "WHIT00001"

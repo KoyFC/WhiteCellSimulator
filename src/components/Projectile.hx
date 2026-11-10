@@ -1,4 +1,7 @@
+package components;
+
 import fried.Time;
+import game.World;
 import fried.physics.Collider;
 import fried.physics.Physics;
 import fried.scene.Component;

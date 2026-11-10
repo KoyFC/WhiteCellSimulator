@@ -1,3 +1,5 @@
+package game;
+
 import fried.Layer;
 import fried.graphics.Color;
 import fried.graphics.DrawQueue;

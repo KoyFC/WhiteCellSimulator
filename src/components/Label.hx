@@ -1,33 +1,33 @@
+package components;
+
 import fried.graphics.Color;
 import fried.graphics.DrawQueue;
-import fried.graphics.Font;
 import fried.graphics.Rect;
 import fried.scene.Component;
-import fried.scene.GameObject;
-import fried.scene.Scene;
 import fried.scene.Text;
 
+// A filled box behind the Text of the same object, with padding around it.
+@:serializable
 class Label extends Component {
+	public var backgroundColor:Color;
+	public var paddingX:Int;
+	public var paddingY:Int;
+
 	var text:Text;
-	var backgroundColor:Color;
-	var paddingX:Int;
-	var paddingY:Int;
 	var rect:Rect = new Rect(0, 0, 0, 0);
 
-	public function new(text:Text, backgroundColor:Color, paddingX:Int, paddingY:Int) {
+	public function new(backgroundColor:Color, paddingX:Int, paddingY:Int) {
 		super();
-		this.text = text;
 		this.backgroundColor = backgroundColor;
 		this.paddingX = paddingX;
 		this.paddingY = paddingY;
 	}
 
-	public static function create(scene:Scene, font:Font, content:String, color:Color, backgroundColor:Color, paddingX:Int, paddingY:Int):Text {
-		var object = scene.add(new GameObject(content));
-		var text = new Text(font, content, color);
-		object.addComponent(new Label(text, backgroundColor, paddingX, paddingY));
-		object.addComponent(text);
-		return text;
+	override function start():Void {
+		text = gameObject.getComponent(Text);
+		if (text == null) {
+			throw 'A Label needs a Text on ${gameObject.name}.';
+		}
 	}
 
 	override function draw():Void {

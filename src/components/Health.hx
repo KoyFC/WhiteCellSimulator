@@ -1,10 +1,14 @@
+package components;
+
 import fried.Time;
 import fried.scene.Component;
 
+@:serializable
 class Health extends Component {
-	public var maxHealth(default, null):Int;
-	public var current(default, null):Int;
+	public var maxHealth:Int;
 	public var invincibilityTime:Float;
+
+	public var current(default, null):Int;
 	public var invincibilityTimer(default, null):Float = 0;
 
 	public var isAlive(get, never):Bool;
@@ -17,6 +21,10 @@ class Health extends Component {
 		super();
 		this.maxHealth = maxHealth;
 		this.invincibilityTime = invincibilityTime;
+		current = maxHealth;
+	}
+
+	override function start():Void {
 		current = maxHealth;
 	}
 
