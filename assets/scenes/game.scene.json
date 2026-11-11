@@ -147,19 +147,5 @@
 			"name": "Controller"
 		}
 	],
-	"platforms": {
-		"cg50": {
-			"camera": {
-				"Camera": {
-					"zoom": 0.4
-				}
-			},
-			"player": {
-				"Player": {
-					"useDigitKeys": true
-				}
-			}
-		}
-	},
 	"version": 1
 }

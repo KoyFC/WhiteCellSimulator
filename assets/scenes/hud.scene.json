@@ -79,6 +79,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 1,
 					"anchorY": 0,
 					"offsetX": -20,
@@ -131,6 +135,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 1,
 					"anchorY": 0,
 					"below": "highscore",
@@ -150,60 +158,5 @@
 			"name": "Score"
 		}
 	],
-	"platforms": {
-		"cg50": {
-			"highscore": {
-				"Label": {
-					"paddingX": 3,
-					"paddingY": 2
-				},
-				"ScreenAnchor": {
-					"offsetX": -6,
-					"offsetY": 5
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 9
-					}
-				}
-			},
-			"lives": {
-				"Label": {
-					"paddingX": 3,
-					"paddingY": 2
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 9
-					}
-				},
-				"Transform": {
-					"x": 6,
-					"y": 5
-				}
-			},
-			"score": {
-				"Label": {
-					"paddingX": 3,
-					"paddingY": 2
-				},
-				"ScreenAnchor": {
-					"offsetX": -6,
-					"offsetY": 6
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 9
-					}
-				}
-			}
-		}
-	},
 	"version": 1
 }

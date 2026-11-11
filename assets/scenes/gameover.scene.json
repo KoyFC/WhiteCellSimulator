@@ -66,6 +66,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 0.5,
 					"anchorY": 0.25,
 					"offsetX": 0,
@@ -111,6 +115,10 @@
 					},
 					"text": "Score: 0",
 					"type": "Text"
+				},
+				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
 				},
 				{
 					"anchorX": 0.5,
@@ -165,6 +173,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 0.5,
 					"anchorY": 0.55,
 					"offsetX": 0,
@@ -217,6 +229,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 0.5,
 					"anchorY": 0.75,
 					"offsetX": 0,
@@ -251,61 +267,5 @@
 			"name": "Controller"
 		}
 	],
-	"platforms": {
-		"cg50": {
-			"hiscore": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 18
-					}
-				}
-			},
-			"prompt": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 9
-					}
-				}
-			},
-			"score": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 18
-					}
-				}
-			},
-			"title": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 18
-					}
-				}
-			}
-		}
-	},
 	"version": 1
 }

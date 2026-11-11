@@ -66,6 +66,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 0.5,
 					"anchorY": 0.3333333333333333,
 					"offsetX": 0,
@@ -111,6 +115,10 @@
 					},
 					"text": "Hi-Score: 0",
 					"type": "Text"
+				},
+				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
 				},
 				{
 					"anchorX": 0.5,
@@ -165,6 +173,10 @@
 					"type": "Text"
 				},
 				{
+					"maxViewFraction": 0.92,
+					"type": "FitText"
+				},
+				{
 					"anchorX": 0.5,
 					"anchorY": 0.6666666666666666,
 					"offsetX": 0,
@@ -199,48 +211,5 @@
 			"name": "Controller"
 		}
 	],
-	"platforms": {
-		"cg50": {
-			"hiscore": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 9
-					}
-				}
-			},
-			"prompt": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 9
-					}
-				}
-			},
-			"title": {
-				"Label": {
-					"paddingX": 7,
-					"paddingY": 3
-				},
-				"Text": {
-					"font": {
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 18
-					}
-				}
-			}
-		}
-	},
 	"version": 1
 }

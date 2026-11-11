@@ -31,10 +31,11 @@ class Label extends Component {
 	}
 
 	override function draw():Void {
+		// The padding keeps its size while the text is scaled by the object's transform, as a FitText does.
 		rect.x = Std.int(transform.x) - paddingX;
 		rect.y = Std.int(transform.y) - paddingY;
-		rect.width = text.width + paddingX * 2;
-		rect.height = text.height + paddingY * 2;
+		rect.width = Std.int(text.width * transform.scaleX) + paddingX * 2;
+		rect.height = Std.int(text.height * transform.scaleY) + paddingY * 2;
 		DrawQueue.submitFillRect(gameObject.priority, rect, backgroundColor);
 	}
 }
