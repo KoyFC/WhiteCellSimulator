@@ -31,6 +31,13 @@ class Label extends Component {
 	}
 
 	override function draw():Void {
+		// The editor draws a scene without starting it, so the Text may not be found yet.
+		if (text == null) {
+			text = gameObject.getComponent(Text);
+			if (text == null) {
+				return;
+			}
+		}
 		// The padding keeps its size while the text is scaled by the object's transform, as a FitText does.
 		rect.x = Std.int(transform.x) - paddingX;
 		rect.y = Std.int(transform.y) - paddingY;
