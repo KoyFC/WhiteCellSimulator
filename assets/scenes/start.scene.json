@@ -35,13 +35,13 @@
 			"components": [
 				{
 					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.3333333333333333,
+					"anchorMaxY": 0.5,
 					"anchorMinX": 0.5,
-					"anchorMinY": 0.3333333333333333,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": -46.0,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{
@@ -87,9 +87,9 @@
 					"anchorMinX": 0.5,
 					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": 22.0,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{
@@ -136,13 +136,13 @@
 			"components": [
 				{
 					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.6666666666666666,
+					"anchorMaxY": 0.5,
 					"anchorMinX": 0.5,
-					"anchorMinY": 0.6666666666666666,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": 112.0,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{

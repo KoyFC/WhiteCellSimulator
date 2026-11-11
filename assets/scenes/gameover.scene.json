@@ -35,13 +35,13 @@
 			"components": [
 				{
 					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.25,
+					"anchorMaxY": 0.5,
 					"anchorMinX": 0.5,
-					"anchorMinY": 0.25,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": -85.5,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{
@@ -83,13 +83,13 @@
 			"components": [
 				{
 					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.42,
+					"anchorMaxY": 0.5,
 					"anchorMinX": 0.5,
-					"anchorMinY": 0.42,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": -10.2,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{
@@ -136,13 +136,13 @@
 			"components": [
 				{
 					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.55,
+					"anchorMaxY": 0.5,
 					"anchorMinX": 0.5,
-					"anchorMinY": 0.55,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": 60.0,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{
@@ -189,13 +189,13 @@
 			"components": [
 				{
 					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.75,
+					"anchorMaxY": 0.5,
 					"anchorMinX": 0.5,
-					"anchorMinY": 0.75,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
-					"offsetY": 0,
+					"offsetY": 157.0,
 					"pivotX": 0.5,
-					"pivotY": 0,
+					"pivotY": 0.5,
 					"type": "RectTransform"
 				},
 				{
