@@ -28,7 +28,11 @@ class ScreenAnchor extends Component {
 		this.offsetY = offsetY;
 	}
 
-	override function update():Void {
+	override function layoutAfter():Null<GameObject> {
+		return below;
+	}
+
+	override function layoutPosition():Void {
 		var scene = gameObject.scene;
 		transform.x = scene.viewWidth * anchorX - widthOf(gameObject) * pivotX + offsetX;
 		if (below != null) {
