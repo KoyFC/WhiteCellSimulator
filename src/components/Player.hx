@@ -23,7 +23,7 @@ import game.World;
 // digits 1 to 9 aim the way they sit around 5, 9 up and right and 1 down and left.
 // Aiming with a key, a stick or a touch fires on its own, the mouse fires while
 // its left button is held, and either way the player moves at half speed while
-// shooting. With a touch pad, a touch aims from the pad's centre rather than at
+// shooting. With a touch pad, a touch aims from the pad's center rather than at
 // the point of the world it lands on, which is how the 3DS aims from its bottom
 // screen.
 @:serializable
@@ -169,7 +169,7 @@ class Player extends Component {
 			dy += keyAxis(Key.Up, Key.Down);
 		}
 
-		// Normalised only past unit length, so a stick held halfway still walks
+		// Normalized only past unit length, so a stick held halfway still walks
 		// at half speed while a diagonal on the keys is no faster than a straight line.
 		var length = Math.sqrt(dx * dx + dy * dy);
 		if (length > 1) {
