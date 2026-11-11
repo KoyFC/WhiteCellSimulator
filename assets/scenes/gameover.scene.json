@@ -34,9 +34,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.25,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.25,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -68,17 +74,6 @@
 				{
 					"maxViewFraction": 0.92,
 					"type": "FitText"
-				},
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.25,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.25,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
 				}
 			],
 			"id": "title",
@@ -87,9 +82,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.42,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.42,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -123,17 +124,6 @@
 					"type": "FitText"
 				},
 				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.42,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.42,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
-				},
-				{
 					"format": "Score: {value}",
 					"source": "score",
 					"type": "TextBinding"
@@ -145,9 +135,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.55,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.55,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -181,17 +177,6 @@
 					"type": "FitText"
 				},
 				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.55,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.55,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
-				},
-				{
 					"format": "High Score: {value}",
 					"source": "highScore",
 					"type": "TextBinding"
@@ -203,9 +188,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.75,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.75,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -237,17 +228,6 @@
 				{
 					"maxViewFraction": 0.92,
 					"type": "FitText"
-				},
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.75,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.75,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
 				},
 				{
 					"format": "Press {value} to Restart",

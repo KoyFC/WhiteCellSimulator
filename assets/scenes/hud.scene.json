@@ -47,9 +47,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 15
+					"anchorMaxX": 1,
+					"anchorMaxY": 0,
+					"anchorMinX": 1,
+					"anchorMinY": 0,
+					"offsetX": -20,
+					"offsetY": 15,
+					"pivotX": 1,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -83,17 +89,6 @@
 					"type": "FitText"
 				},
 				{
-					"anchorMaxX": 1,
-					"anchorMaxY": 0,
-					"anchorMinX": 1,
-					"anchorMinY": 0,
-					"offsetX": -20,
-					"offsetY": 15,
-					"pivotX": 1,
-					"pivotY": 0,
-					"type": "RectTransform"
-				},
-				{
 					"format": "Hi-Score: {value}",
 					"source": "highScore",
 					"type": "TextBinding"
@@ -105,9 +100,16 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 1,
+					"anchorMaxY": 0,
+					"anchorMinX": 1,
+					"anchorMinY": 0,
+					"below": "highscore",
+					"offsetX": -20,
+					"offsetY": 15,
+					"pivotX": 1,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -139,18 +141,6 @@
 				{
 					"maxViewFraction": 0.92,
 					"type": "FitText"
-				},
-				{
-					"anchorMaxX": 1,
-					"anchorMaxY": 0,
-					"anchorMinX": 1,
-					"anchorMinY": 0,
-					"below": "highscore",
-					"offsetX": -20,
-					"offsetY": 15,
-					"pivotX": 1,
-					"pivotY": 0,
-					"type": "RectTransform"
 				},
 				{
 					"format": "Score: {value}",

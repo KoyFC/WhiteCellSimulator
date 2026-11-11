@@ -34,9 +34,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.3333333333333333,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.3333333333333333,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -68,17 +74,6 @@
 				{
 					"maxViewFraction": 0.92,
 					"type": "FitText"
-				},
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.3333333333333333,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.3333333333333333,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
 				}
 			],
 			"id": "title",
@@ -87,9 +82,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.5,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.5,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -123,17 +124,6 @@
 					"type": "FitText"
 				},
 				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
-				},
-				{
 					"format": "Hi-Score: {value}",
 					"source": "highScore",
 					"type": "TextBinding"
@@ -145,9 +135,15 @@
 		{
 			"components": [
 				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.6666666666666666,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.6666666666666666,
+					"offsetX": 0,
+					"offsetY": 0,
+					"pivotX": 0.5,
+					"pivotY": 0,
+					"type": "RectTransform"
 				},
 				{
 					"backgroundColor": {
@@ -179,17 +175,6 @@
 				{
 					"maxViewFraction": 0.92,
 					"type": "FitText"
-				},
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.6666666666666666,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.6666666666666666,
-					"offsetX": 0,
-					"offsetY": 0,
-					"pivotX": 0.5,
-					"pivotY": 0,
-					"type": "RectTransform"
 				},
 				{
 					"format": "Press {value} to Play",
