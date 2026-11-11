@@ -27,6 +27,7 @@
 						"r": 255
 					},
 					"font": {
+						"minScreenSize": 14,
 						"path": "NunitoSans.ttf",
 						"root": "engine",
 						"size": 32
@@ -69,6 +70,7 @@
 						"r": 255
 					},
 					"font": {
+						"minScreenSize": 14,
 						"path": "NunitoSans.ttf",
 						"root": "engine",
 						"size": 32
@@ -120,6 +122,7 @@
 						"r": 255
 					},
 					"font": {
+						"minScreenSize": 14,
 						"path": "NunitoSans.ttf",
 						"root": "engine",
 						"size": 32

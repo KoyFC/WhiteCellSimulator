@@ -2,7 +2,7 @@
 	"display": {
 		"filter": "nearest",
 		"height": 540,
-		"mode": "expand",
+		"mode": "height",
 		"width": 960
 	},
 	"gameClass": "game.WhiteCellGame",
