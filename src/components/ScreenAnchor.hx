@@ -2,8 +2,6 @@ package components;
 
 import fried.scene.Component;
 import fried.scene.GameObject;
-import fried.scene.Sprite;
-import fried.scene.Text;
 
 // Places an object from the size of the view, which a scene file cannot know: a fraction of the view, minus a fraction of the object's own size, plus an offset. An object can instead sit under another one, with a gap.
 @:serializable
@@ -43,26 +41,10 @@ class ScreenAnchor extends Component {
 	}
 
 	static function widthOf(object:GameObject):Float {
-		var text = object.getComponent(Text);
-		if (text != null) {
-			return text.width * object.transform.scaleX;
-		}
-		var sprite = object.getComponent(Sprite);
-		if (sprite != null && sprite.texture != null) {
-			return (sprite.source != null ? sprite.source.width : sprite.texture.width) * object.transform.scaleX;
-		}
-		return 0;
+		return object.intrinsicWidth() * object.transform.scaleX;
 	}
 
 	static function heightOf(object:GameObject):Float {
-		var text = object.getComponent(Text);
-		if (text != null) {
-			return text.height * object.transform.scaleY;
-		}
-		var sprite = object.getComponent(Sprite);
-		if (sprite != null && sprite.texture != null) {
-			return (sprite.source != null ? sprite.source.height : sprite.texture.height) * object.transform.scaleY;
-		}
-		return 0;
+		return object.intrinsicHeight() * object.transform.scaleY;
 	}
 }
