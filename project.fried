@@ -1,15 +1,4 @@
 {
-	"3ds": {
-		"display": {
-			"height": 480,
-			"width": 800
-		}
-	},
-	"cg50": {
-		"display": {
-			"mode": "default"
-		}
-	},
 	"display": {
 		"filter": "nearest",
 		"height": 540,
