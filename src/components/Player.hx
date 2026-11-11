@@ -1,5 +1,6 @@
 package components;
 
+import fried.Application;
 import fried.Time;
 import fried.audio.Sound;
 import fried.input.GamepadAxis;
@@ -19,7 +20,7 @@ import game.World;
 
 // Twin stick controls: WASD, the left stick or the d-pad move, and the arrows,
 // the face buttons, the right stick, a touch or the mouse aim. With
-// useDigitKeys, which is the calculator's, the arrows move instead and the
+// useDigitKeys, which is the calculator's and is set there by itself, the arrows move instead and the
 // digits 1 to 9 aim the way they sit around 5, 9 up and right and 1 down and left.
 // Aiming with a key, a stick or a touch fires on its own, the mouse fires while
 // its left button is held, and either way the player moves at half speed while
@@ -59,7 +60,8 @@ class Player extends Component {
 		super();
 		this.speed = speed;
 		this.projectilePool = projectilePool;
-		this.useDigitKeys = useDigitKeys;
+		// The calculator has no WASD, so the platform decides this and not the scene.
+		this.useDigitKeys = useDigitKeys || Application.platformName == "cg50";
 	}
 
 	override function start():Void {
