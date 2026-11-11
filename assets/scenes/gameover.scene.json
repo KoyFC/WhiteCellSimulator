@@ -70,13 +70,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.25,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.25,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.25,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				}
 			],
 			"id": "title",
@@ -121,13 +123,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.42,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.42,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.42,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				},
 				{
 					"format": "Score: {value}",
@@ -177,13 +181,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.55,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.55,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.55,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				},
 				{
 					"format": "High Score: {value}",
@@ -233,13 +239,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.75,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.75,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.75,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				},
 				{
 					"format": "Press {value} to Restart",

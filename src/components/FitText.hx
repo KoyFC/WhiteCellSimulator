@@ -3,7 +3,7 @@ package components;
 import fried.scene.Component;
 import fried.scene.Text;
 
-// Shrinks the Text of the same object, and the Label around it, until the line fits in a fraction of the view's width, so a line is never cut off by a screen narrower than the one the scene was made for. It never grows a line, and the ScreenAnchor of the object places it from the size this leaves.
+// Shrinks the Text of the same object, and the Label around it, until the line fits in a fraction of the view's width, so a line is never cut off by a screen narrower than the one the scene was made for. It never grows a line, and the RectTransform of the object places it from the size this leaves.
 @:serializable
 class FitText extends Component {
 	public var maxViewFraction:Float;

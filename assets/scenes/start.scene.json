@@ -70,13 +70,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.3333333333333333,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.3333333333333333,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.3333333333333333,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				}
 			],
 			"id": "title",
@@ -121,13 +123,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.5,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.5,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.5,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				},
 				{
 					"format": "Hi-Score: {value}",
@@ -177,13 +181,15 @@
 					"type": "FitText"
 				},
 				{
-					"anchorX": 0.5,
-					"anchorY": 0.6666666666666666,
+					"anchorMaxX": 0.5,
+					"anchorMaxY": 0.6666666666666666,
+					"anchorMinX": 0.5,
+					"anchorMinY": 0.6666666666666666,
 					"offsetX": 0,
 					"offsetY": 0,
 					"pivotX": 0.5,
 					"pivotY": 0,
-					"type": "ScreenAnchor"
+					"type": "RectTransform"
 				},
 				{
 					"format": "Press {value} to Play",
