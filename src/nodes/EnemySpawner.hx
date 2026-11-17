@@ -1,16 +1,14 @@
-package components;
+package nodes;
 
 import fried.Time;
 import fried.graphics.Texture;
 import game.GameState;
 import game.World;
 import fried.physics.Collider;
-import fried.scene.Component;
-import fried.scene.GameObject;
-import fried.scene.Sprite;
+import fried.scene.Node;
 
 @:serializable
-class EnemySpawner extends Component {
+class EnemySpawner extends Node {
 	static inline var INITIAL_ENEMIES = 4;
 	static inline var MAX_ENEMIES = 20;
 	static inline var SAFE_RADIUS = 200;
@@ -22,25 +20,23 @@ class EnemySpawner extends Component {
 
 	public var texture:Texture;
 
-	// The object with the Player and the Collider that enemies come for.
-	public var target:GameObject;
+	// The Player that enemies come for.
+	public var target:Player;
 
-	var player:Player;
 	var targetCollider:Collider;
 	var enemies:Array<Enemy> = [];
 	var spawnTimer:Float = BASE_INTERVAL;
 
-	public function new(texture:Texture, target:GameObject) {
-		super();
+	public function new(texture:Texture = null, target:Player = null) {
+		super("EnemySpawner");
 		this.texture = texture;
 		this.target = target;
 	}
 
-	override function start():Void {
-		player = target == null ? null : target.getComponent(Player);
-		targetCollider = target == null ? null : target.getComponent(Collider);
-		if (player == null || targetCollider == null) {
-			throw 'An EnemySpawner needs a target with a Player and a Collider.';
+	override function ready():Void {
+		targetCollider = target == null ? null : target.findChild(Collider);
+		if (targetCollider == null) {
+			throw 'An EnemySpawner needs a target Player with a Collider child.';
 		}
 		for (i in 0...INITIAL_ENEMIES) {
 			spawn();
@@ -51,7 +47,7 @@ class EnemySpawner extends Component {
 		var index = enemies.length;
 		while (index-- > 0) {
 			var enemy = enemies[index];
-			if (enemy.gameObject == null || enemy.gameObject.isDestroyed) {
+			if (enemy.isDestroyed) {
 				enemies.splice(index, 1);
 			}
 		}
@@ -75,12 +71,12 @@ class EnemySpawner extends Component {
 			y = Math.random() * (World.HEIGHT - height);
 		} while (distanceToTarget(x + width / 2, y + height / 2) <= SAFE_RADIUS);
 
-		var object = gameObject.scene.add(new GameObject("Enemy", x, y));
-		object.priority = PRIORITY;
-		object.transform.setScale(SCALE);
-		object.addComponent(new Sprite(texture));
-		var collider = object.addComponent(new Collider(texture.width, texture.height));
-		enemies.push(object.addComponent(new Enemy(collider, player)));
+		var enemy = scene.add(new Enemy(texture, target));
+		enemy.x = x;
+		enemy.y = y;
+		enemy.priority = PRIORITY;
+		enemy.setScale(SCALE);
+		enemies.push(enemy);
 	}
 
 	function distanceToTarget(x:Float, y:Float):Float {

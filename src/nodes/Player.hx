@@ -1,4 +1,4 @@
-package components;
+package nodes;
 
 import fried.Application;
 import fried.Time;
@@ -11,8 +11,6 @@ import fried.input.MouseButton;
 import fried.io.Assets;
 import fried.physics.Collider;
 import fried.scene.Camera;
-import fried.scene.Component;
-import fried.scene.GameObject;
 import fried.scene.Sprite;
 import game.GameState;
 import game.TouchPad;
@@ -28,22 +26,20 @@ import game.World;
 // the point of the world it lands on, which is how the 3DS aims from its bottom
 // screen.
 @:serializable
-class Player extends Component {
+class Player extends Sprite {
 	static inline var SHOOT_COOLDOWN = 0.1;
 	static inline var SHOOTING_SPEED_FACTOR = 0.5;
 	static inline var PROJECTILE_SPEED = 500;
 
 	public var speed:Float;
 
-	// The object with the ProjectilePool shots come from.
-	public var projectilePool:GameObject;
+	// The pool shots come from.
+	public var projectilePool:ProjectilePool;
 
 	public var useDigitKeys:Bool;
 
 	var camera:Camera;
-	var projectiles:ProjectilePool;
 
-	var sprite:Sprite;
 	var shootSound:Sound;
 
 	public var collider(default, null):Collider;
@@ -56,22 +52,21 @@ class Player extends Component {
 	var lastMouseX:Int;
 	var lastMouseY:Int;
 
-	public function new(speed:Float, projectilePool:GameObject, useDigitKeys:Bool = false) {
+	public function new(speed:Float = 0.0, projectilePool:ProjectilePool = null, useDigitKeys:Bool = false) {
 		super();
+		name = "Player";
 		this.speed = speed;
 		this.projectilePool = projectilePool;
 		// The calculator has no WASD, so the platform decides this and not the scene.
 		this.useDigitKeys = useDigitKeys || Application.platformName == "cg50";
 	}
 
-	override function start():Void {
-		camera = gameObject.scene.camera;
-		projectiles = projectilePool == null ? null : projectilePool.getComponent(ProjectilePool);
-		sprite = gameObject.getComponent(Sprite);
-		collider = gameObject.getComponent(Collider);
-		health = gameObject.getComponent(Health);
-		if (camera == null || projectiles == null || sprite == null || collider == null || health == null) {
-			throw 'A Player needs a scene camera, a projectile pool, and a Sprite, a Collider and a Health on ${gameObject.name}.';
+	override function ready():Void {
+		camera = scene.camera;
+		collider = findChild(Collider);
+		health = findChild(Health);
+		if (camera == null || projectilePool == null || collider == null || health == null) {
+			throw 'A Player needs a scene camera, a projectile pool, and a Collider and a Health child on $name.';
 		}
 		GameState.lives = health.maxHealth;
 		shootSound = Sound.from(Assets.game("sounds/shoot.wav"));
@@ -127,11 +122,11 @@ class Player extends Component {
 			aimY = camera.screenToWorldY(Input.mouseY) - collider.centerY;
 		}
 		if (aimX != 0 || aimY != 0) {
-			transform.rotation = Math.atan2(aimY, aimX) * 180 / Math.PI + 90;
+			rotation = Math.atan2(aimY, aimX) * 180 / Math.PI + 90;
 		}
 
 		if (isShooting && shootCooldown <= 0 && (aimX != 0 || aimY != 0)) {
-			projectiles.fire(collider.centerX, collider.centerY, aimX, aimY, PROJECTILE_SPEED);
+			projectilePool.fire(collider.centerX, collider.centerY, aimX, aimY, PROJECTILE_SPEED);
 			shootCooldown = SHOOT_COOLDOWN;
 			shootSound.play();
 		}
@@ -179,7 +174,7 @@ class Player extends Component {
 			dy /= length;
 		}
 
-		transform.translate(dx * currentSpeed * Time.deltaSeconds, dy * currentSpeed * Time.deltaSeconds);
+		translate(dx * currentSpeed * Time.deltaSeconds, dy * currentSpeed * Time.deltaSeconds);
 		World.keepInside(collider);
 	}
 

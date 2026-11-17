@@ -1,6 +1,7 @@
 package game;
 
 import fried.physics.Collider;
+import fried.scene.Node2D;
 
 class World {
 	public static inline var WIDTH = 1920;
@@ -11,8 +12,11 @@ class World {
 	}
 
 	public static function keepInside(collider:Collider):Void {
-		var transform = collider.transform;
-		transform.x += clamp(collider.left, 0, WIDTH - (collider.right - collider.left)) - collider.left;
-		transform.y += clamp(collider.top, 0, HEIGHT - (collider.bottom - collider.top)) - collider.top;
+		var owner = Std.downcast(collider.parent, Node2D);
+		if (owner == null) {
+			return;
+		}
+		owner.x += clamp(collider.left, 0, WIDTH - (collider.right - collider.left)) - collider.left;
+		owner.y += clamp(collider.top, 0, HEIGHT - (collider.bottom - collider.top)) - collider.top;
 	}
 }

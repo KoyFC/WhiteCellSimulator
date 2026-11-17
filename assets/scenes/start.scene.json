@@ -1,206 +1,157 @@
 {
 	"name": "Start",
-	"objects": [
+	"nodes": [
 		{
-			"components": [
-				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
-				},
-				{
-					"colorA": {
-						"a": 255,
-						"b": 50,
-						"g": 50,
-						"r": 110
-					},
-					"colorB": {
-						"a": 255,
-						"b": 70,
-						"g": 70,
-						"r": 135
-					},
-					"height": 4096,
-					"tileSize": 64,
-					"type": "Checkerboard",
-					"width": 4096
-				}
-			],
+			"colorA": {
+				"a": 255,
+				"b": 50,
+				"g": 50,
+				"r": 110
+			},
+			"colorB": {
+				"a": 255,
+				"b": 70,
+				"g": 70,
+				"r": 135
+			},
+			"height": 4096,
 			"id": "background",
 			"name": "Background",
-			"priority": -100
+			"priority": -100,
+			"tileSize": 64,
+			"type": "Checkerboard",
+			"width": 4096,
+			"x": 0,
+			"y": 0
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": -46.0,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 255,
-						"g": 255,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 64
-					},
-					"text": "Blood Borne Defense",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				}
-			],
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"color": {
+				"a": 255,
+				"b": 255,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 64
+			},
 			"id": "title",
-			"name": "Title"
+			"maxViewFraction": 0.92,
+			"name": "Title",
+			"offsetX": 0,
+			"offsetY": -46.0,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "Blood Borne Defense",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": 22.0,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 0,
-						"g": 255,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 32
-					},
-					"text": "Hi-Score: 0",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				},
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"children": [
 				{
 					"format": "Hi-Score: {value}",
+					"id": "hiscore-binding",
 					"source": "highScore",
 					"type": "TextBinding"
 				}
 			],
+			"color": {
+				"a": 255,
+				"b": 0,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 32
+			},
 			"id": "hiscore",
-			"name": "Hi-Score"
+			"maxViewFraction": 0.92,
+			"name": "Hi-Score",
+			"offsetX": 0,
+			"offsetY": 22.0,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "Hi-Score: 0",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": 112.0,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 0,
-						"g": 255,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 32
-					},
-					"text": "Press Space to Play",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				},
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"children": [
 				{
 					"format": "Press {value} to Play",
+					"id": "prompt-binding",
 					"source": "confirmKey",
 					"type": "TextBinding"
 				}
 			],
+			"color": {
+				"a": 255,
+				"b": 0,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 32
+			},
 			"id": "prompt",
-			"name": "Prompt"
+			"maxViewFraction": 0.92,
+			"name": "Prompt",
+			"offsetX": 0,
+			"offsetY": 112.0,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "Press Space to Play",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
-				},
-				{
-					"inputDelay": 0,
-					"nextScene": "game",
-					"type": "MenuController"
-				}
-			],
 			"id": "controller",
-			"name": "Controller"
+			"inputDelay": 0,
+			"name": "Controller",
+			"nextScene": "game",
+			"type": "MenuController"
 		}
 	],
-	"version": 1
+	"version": 2
 }

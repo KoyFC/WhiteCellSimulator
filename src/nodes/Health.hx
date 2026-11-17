@@ -1,10 +1,11 @@
-package components;
+package nodes;
 
 import fried.Time;
-import fried.scene.Component;
+import fried.scene.Node;
 
+// Hit points and the short invincibility after a hit. A child of what can be hurt.
 @:serializable
-class Health extends Component {
+class Health extends Node {
 	public var maxHealth:Int;
 	public var invincibilityTime:Float;
 
@@ -17,14 +18,14 @@ class Health extends Component {
 	public var onDamage:Null<Int->Void>;
 	public var onDeath:Null<Void->Void>;
 
-	public function new(maxHealth:Int, invincibilityTime:Float = 0) {
-		super();
+	public function new(maxHealth:Int = 1, invincibilityTime:Float = 0) {
+		super("Health");
 		this.maxHealth = maxHealth;
 		this.invincibilityTime = invincibilityTime;
 		current = maxHealth;
 	}
 
-	override function start():Void {
+	override function ready():Void {
 		current = maxHealth;
 	}
 

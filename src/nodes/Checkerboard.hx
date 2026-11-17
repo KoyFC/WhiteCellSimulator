@@ -1,12 +1,12 @@
-package components;
+package nodes;
 
 import fried.graphics.Color;
 import fried.graphics.DrawQueue;
 import fried.graphics.Rect;
-import fried.scene.Component;
+import fried.scene.Node2D;
 
 @:serializable
-class Checkerboard extends Component {
+class Checkerboard extends Node2D {
 	public var width:Int;
 	public var height:Int;
 	public var tileSize:Int;
@@ -15,13 +15,14 @@ class Checkerboard extends Component {
 
 	var tile:Rect;
 
-	public function new(width:Int, height:Int, tileSize:Int, colorA:Color, colorB:Color) {
+	public function new(width:Int = 0, height:Int = 0, tileSize:Int = 64, colorA:Color = null, colorB:Color = null) {
 		super();
+		name = "Checkerboard";
 		this.width = width;
 		this.height = height;
 		this.tileSize = tileSize;
-		this.colorA = colorA;
-		this.colorB = colorB;
+		this.colorA = colorA != null ? colorA : Color.rgb(0, 0, 0);
+		this.colorB = colorB != null ? colorB : Color.rgb(255, 255, 255);
 		tile = new Rect(0, 0, tileSize, tileSize);
 	}
 
@@ -35,7 +36,6 @@ class Checkerboard extends Component {
 		var lastX = tilesX - 1;
 		var lastY = tilesY - 1;
 
-		var scene = gameObject.scene;
 		var camera = scene.camera;
 		var viewWidth = scene.viewWidth;
 		var viewHeight = scene.viewHeight;
@@ -54,7 +54,7 @@ class Checkerboard extends Component {
 			for (x in firstX...lastX + 1) {
 				tile.x = x * tileSize;
 				tile.y = y * tileSize;
-				DrawQueue.submitFillRect(gameObject.priority, tile, (x + y) % 2 == 0 ? colorA : colorB);
+				DrawQueue.submitFillRect(priority, tile, (x + y) % 2 == 0 ? colorA : colorB);
 			}
 		}
 	}

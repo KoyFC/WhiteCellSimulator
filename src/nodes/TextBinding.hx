@@ -1,30 +1,30 @@
-package components;
+package nodes;
 
 import fried.Application;
 import fried.input.Input;
-import fried.scene.Component;
-import fried.scene.Text;
+import fried.scene.Label;
+import fried.scene.Node;
 import game.GameState;
 
-// Keeps the Text of the same object showing a value of the game. The format has {value} where it goes, and the source is score, highScore, lives or confirmKey, the name of the key that confirms on this platform.
+// Keeps the Label it is a child of showing a value of the game. The format has {value} where it goes, and the source is score, highScore, lives or confirmKey, the name of the key that confirms on this platform.
 @:serializable
-class TextBinding extends Component {
+class TextBinding extends Node {
 	public var format:String;
 	public var source:String;
 
-	var text:Text;
+	var label:Label;
 	var shown:String;
 
-	public function new(format:String, source:String) {
-		super();
+	public function new(format:String = "{value}", source:String = "score") {
+		super("TextBinding");
 		this.format = format;
 		this.source = source;
 	}
 
-	override function start():Void {
-		text = gameObject.getComponent(Text);
-		if (text == null) {
-			throw 'A TextBinding needs a Text on ${gameObject.name}.';
+	override function ready():Void {
+		label = Std.downcast(parent, Label);
+		if (label == null) {
+			throw 'A TextBinding needs a Label as its parent on $name.';
 		}
 		refresh();
 	}
@@ -37,7 +37,7 @@ class TextBinding extends Component {
 		var current = StringTools.replace(format, "{value}", valueOf());
 		if (current != shown) {
 			shown = current;
-			text.text = current;
+			label.text = current;
 		}
 	}
 
@@ -48,7 +48,7 @@ class TextBinding extends Component {
 			case "lives": Std.string(GameState.lives);
 			case "confirmKey":
 				if (Input.isGamepadConnected) "Start" else if (Application.platformName == "cg50") "EXE" else "Space";
-			case other: throw 'The TextBinding on ${gameObject.name} has the unknown source "$other".';
+			case other: throw 'The TextBinding on $name has the unknown source "$other".';
 		}
 	}
 }

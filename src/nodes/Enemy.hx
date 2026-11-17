@@ -1,4 +1,4 @@
-package components;
+package nodes;
 
 import fried.Time;
 import game.GameState;
@@ -7,10 +7,10 @@ import fried.audio.Sound;
 import fried.io.Assets;
 import fried.physics.Collider;
 import fried.physics.Physics;
-import fried.scene.Component;
+import fried.graphics.Texture;
 import fried.scene.Sprite;
 
-class Enemy extends Component {
+class Enemy extends Sprite {
 	static inline var BASE_SPEED = 50;
 	static inline var SPEED_PER_STEP = 10;
 	static inline var MAX_SPEED = 150;
@@ -27,14 +27,16 @@ class Enemy extends Component {
 	public var collider(default, null):Collider;
 	public var health(default, null):Health;
 
-	public function new(collider:Collider, target:Player) {
-		super();
-		this.collider = collider;
+	public function new(texture:Texture, target:Player) {
+		super(texture);
+		name = "Enemy";
 		this.target = target;
+		collider = addChild(new Collider(texture.width, texture.height));
+		health = addChild(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
+		addChild(new InvincibilityBlink());
 	}
 
-	override function start():Void {
-		health = gameObject.addComponent(new Health(MAX_HEALTH, INVINCIBILITY_TIME));
+	override function ready():Void {
 		var hitSound = Sound.from(Assets.game("sounds/enemy_hit.wav"));
 		var deathSound = Sound.from(Assets.game("sounds/enemy_death.wav"));
 		health.onDamage = function(_) {
@@ -45,16 +47,15 @@ class Enemy extends Component {
 		health.onDeath = function() {
 			deathSound.play();
 			GameState.addScore(BASE_POINTS + GameState.difficultyStep() * POINTS_PER_STEP);
-			gameObject.destroy();
+			destroy();
 		};
-		gameObject.addComponent(new InvincibilityBlink());
 	}
 
 	override function update():Void {
 		var targetCollider = target.collider;
 		if (collider.overlaps(targetCollider)) {
 			target.health.takeDamage(CONTACT_DAMAGE);
-			gameObject.destroy();
+			destroy();
 			return;
 		}
 
@@ -62,9 +63,9 @@ class Enemy extends Component {
 		var dy = targetCollider.centerY - collider.centerY;
 		var distance = Math.sqrt(dx * dx + dy * dy);
 		if (distance > 0) {
-			transform.rotation = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+			rotation = Math.atan2(dy, dx) * 180 / Math.PI + 90;
 			var step = Math.min(MAX_SPEED, BASE_SPEED + GameState.difficultyStep() * SPEED_PER_STEP) * Time.deltaSeconds;
-			transform.translate(dx / distance * step, dy / distance * step);
+			translate(dx / distance * step, dy / distance * step);
 		}
 
 		separateFromOtherEnemies();
@@ -72,18 +73,18 @@ class Enemy extends Component {
 	}
 
 	function separateFromOtherEnemies():Void {
-		Physics.overlapBoxAll(gameObject.scene, collider.left, collider.top, collider.right - collider.left, collider.bottom - collider.top,
+		Physics.overlapBoxAll(scene, collider.left, collider.top, collider.right - collider.left, collider.bottom - collider.top,
 			overlapping, collider);
 		for (other in overlapping) {
-			if (other.gameObject.getComponent(Enemy) == null) {
+			if (Std.downcast(other.parent, Enemy) == null) {
 				continue;
 			}
 			var overlapX = Math.min(collider.right - other.left, other.right - collider.left);
 			var overlapY = Math.min(collider.bottom - other.top, other.bottom - collider.top);
 			if (overlapX < overlapY) {
-				transform.x += (collider.centerX < other.centerX ? -overlapX : overlapX) / 2;
+				x += (collider.centerX < other.centerX ? -overlapX : overlapX) / 2;
 			} else {
-				transform.y += (collider.centerY < other.centerY ? -overlapY : overlapY) / 2;
+				y += (collider.centerY < other.centerY ? -overlapY : overlapY) / 2;
 			}
 		}
 	}

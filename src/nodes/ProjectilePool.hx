@@ -1,14 +1,11 @@
-package components;
+package nodes;
 
 import fried.graphics.Texture;
-import fried.physics.Collider;
-import fried.scene.Component;
-import fried.scene.GameObject;
-import fried.scene.Sprite;
+import fried.scene.Node;
 
 // Keeps the projectiles of a scene and reuses them, since shooting makes a lot of them and they are cheap to hide.
 @:serializable
-class ProjectilePool extends Component {
+class ProjectilePool extends Node {
 	static inline var SCALE = 1;
 	static inline var PRIORITY = 5;
 
@@ -17,13 +14,13 @@ class ProjectilePool extends Component {
 
 	var projectiles:Array<Projectile> = [];
 
-	public function new(texture:Texture, initialSize:Int) {
-		super();
+	public function new(texture:Texture = null, initialSize:Int = 0) {
+		super("ProjectilePool");
 		this.texture = texture;
 		this.initialSize = initialSize;
 	}
 
-	override function start():Void {
+	override function ready():Void {
 		for (i in 0...initialSize) {
 			create();
 		}
@@ -32,7 +29,7 @@ class ProjectilePool extends Component {
 	public function fire(x:Float, y:Float, directionX:Float, directionY:Float, speed:Float):Projectile {
 		var spawnedProjectile = null;
 		for (projectile in projectiles) {
-			if (!projectile.gameObject.isActive) {
+			if (!projectile.active) {
 				spawnedProjectile = projectile;
 				break;
 			}
@@ -45,13 +42,10 @@ class ProjectilePool extends Component {
 	}
 
 	function create():Projectile {
-		var object = gameObject.scene.add(new GameObject("Projectile"));
-		object.priority = PRIORITY;
-		object.transform.setScale(SCALE);
-		object.addComponent(new Sprite(texture));
-		var collider = object.addComponent(new Collider(texture.width, texture.height));
-		var projectile = object.addComponent(new Projectile(collider));
-		object.isActive = false;
+		var projectile = scene.add(new Projectile(texture));
+		projectile.priority = PRIORITY;
+		projectile.setScale(SCALE);
+		projectile.active = false;
 		projectiles.push(projectile);
 		return projectile;
 	}

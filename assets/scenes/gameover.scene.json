@@ -1,259 +1,200 @@
 {
 	"name": "Game Over",
-	"objects": [
+	"nodes": [
 		{
-			"components": [
-				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
-				},
-				{
-					"colorA": {
-						"a": 255,
-						"b": 50,
-						"g": 50,
-						"r": 110
-					},
-					"colorB": {
-						"a": 255,
-						"b": 70,
-						"g": 70,
-						"r": 135
-					},
-					"height": 4096,
-					"tileSize": 64,
-					"type": "Checkerboard",
-					"width": 4096
-				}
-			],
+			"colorA": {
+				"a": 255,
+				"b": 50,
+				"g": 50,
+				"r": 110
+			},
+			"colorB": {
+				"a": 255,
+				"b": 70,
+				"g": 70,
+				"r": 135
+			},
+			"height": 4096,
 			"id": "background",
 			"name": "Background",
-			"priority": -100
+			"priority": -100,
+			"tileSize": 64,
+			"type": "Checkerboard",
+			"width": 4096,
+			"x": 0,
+			"y": 0
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": -85.5,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 72
-					},
-					"text": "GAME OVER",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				}
-			],
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"color": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 72
+			},
 			"id": "title",
-			"name": "Title"
+			"maxViewFraction": 0.92,
+			"name": "Title",
+			"offsetX": 0,
+			"offsetY": -85.5,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "GAME OVER",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": -10.2,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 255,
-						"g": 255,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 48
-					},
-					"text": "Score: 0",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				},
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"children": [
 				{
 					"format": "Score: {value}",
+					"id": "score-binding",
 					"source": "score",
 					"type": "TextBinding"
 				}
 			],
+			"color": {
+				"a": 255,
+				"b": 255,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 48
+			},
 			"id": "score",
-			"name": "Score"
+			"maxViewFraction": 0.92,
+			"name": "Score",
+			"offsetX": 0,
+			"offsetY": -10.2,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "Score: 0",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": 60.0,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 0,
-						"g": 255,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 48
-					},
-					"text": "High Score: 0",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				},
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"children": [
 				{
 					"format": "High Score: {value}",
+					"id": "hiscore-binding",
 					"source": "highScore",
 					"type": "TextBinding"
 				}
 			],
+			"color": {
+				"a": 255,
+				"b": 0,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 48
+			},
 			"id": "hiscore",
-			"name": "High Score"
+			"maxViewFraction": 0.92,
+			"name": "High Score",
+			"offsetX": 0,
+			"offsetY": 60.0,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "High Score: 0",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"anchorMaxX": 0.5,
-					"anchorMaxY": 0.5,
-					"anchorMinX": 0.5,
-					"anchorMinY": 0.5,
-					"offsetX": 0,
-					"offsetY": 157.0,
-					"pivotX": 0.5,
-					"pivotY": 0.5,
-					"type": "RectTransform"
-				},
-				{
-					"backgroundColor": {
-						"a": 255,
-						"b": 0,
-						"g": 0,
-						"r": 0
-					},
-					"paddingX": 20,
-					"paddingY": 10,
-					"type": "Label"
-				},
-				{
-					"color": {
-						"a": 255,
-						"b": 255,
-						"g": 255,
-						"r": 255
-					},
-					"font": {
-						"minScreenSize": 14,
-						"path": "NunitoSans.ttf",
-						"root": "engine",
-						"size": 32
-					},
-					"text": "Press Space to Restart",
-					"type": "Text"
-				},
-				{
-					"maxViewFraction": 0.92,
-					"type": "FitText"
-				},
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"children": [
 				{
 					"format": "Press {value} to Restart",
+					"id": "prompt-binding",
 					"source": "confirmKey",
 					"type": "TextBinding"
 				}
 			],
+			"color": {
+				"a": 255,
+				"b": 255,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 32
+			},
 			"id": "prompt",
-			"name": "Prompt"
+			"maxViewFraction": 0.92,
+			"name": "Prompt",
+			"offsetX": 0,
+			"offsetY": 157.0,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "Press Space to Restart",
+			"type": "HudLabel"
 		},
 		{
-			"components": [
-				{
-					"type": "Transform",
-					"x": 0,
-					"y": 0
-				},
-				{
-					"inputDelay": 0.75,
-					"nextScene": "game",
-					"type": "MenuController"
-				}
-			],
 			"id": "controller",
-			"name": "Controller"
+			"inputDelay": 0.75,
+			"name": "Controller",
+			"nextScene": "game",
+			"type": "MenuController"
 		}
 	],
-	"version": 1
+	"version": 2
 }

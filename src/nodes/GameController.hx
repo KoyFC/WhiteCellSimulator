@@ -1,34 +1,33 @@
-package components;
+package nodes;
 
 import fried.Log;
 import fried.audio.Sound;
 import fried.io.Assets;
-import fried.scene.Component;
-import fried.scene.GameObject;
+import fried.scene.Node;
 import fried.scene.SceneManager;
 import game.GameAudio;
 import game.GameState;
 
 // Runs one game: the music and the interface while it lasts, and the way out to the game over scene when the player dies.
 @:serializable
-class GameController extends Component {
+class GameController extends Node {
 	public var interfaceScene:String;
 	public var gameOverScene:String;
-	public var player:GameObject;
+	public var player:Player;
 
 	var isGameOver:Bool = false;
 
-	public function new(interfaceScene:String, gameOverScene:String, player:GameObject) {
-		super();
+	public function new(interfaceScene:String = "", gameOverScene:String = "", player:Player = null) {
+		super("GameController");
 		this.interfaceScene = interfaceScene;
 		this.gameOverScene = gameOverScene;
 		this.player = player;
 	}
 
-	override function start():Void {
-		var health = player == null ? null : player.getComponent(Health);
+	override function ready():Void {
+		var health = player == null ? null : player.findChild(Health);
 		if (health == null) {
-			throw 'A GameController needs a player with a Health.';
+			throw 'A GameController needs a player with a Health child.';
 		}
 		health.onDeath = function() {
 			isGameOver = true;
