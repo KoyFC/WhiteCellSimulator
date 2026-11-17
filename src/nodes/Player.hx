@@ -1,7 +1,6 @@
 package nodes;
 
 import fried.Application;
-import fried.Time;
 import fried.audio.Sound;
 import fried.input.GamepadAxis;
 import fried.input.GamepadButton;
@@ -79,9 +78,9 @@ class Player extends Sprite {
 		lastMouseY = Input.mouseY;
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		if (shootCooldown > 0) {
-			shootCooldown -= Time.deltaSeconds;
+			shootCooldown -= delta;
 		}
 
 		var shootX = Input.getGamepadAxis(GamepadAxis.RightX);
@@ -108,7 +107,7 @@ class Player extends Sprite {
 		var isShootingWithMouse = isAimingWithPointer && Input.isButtonPressed(MouseButton.Left);
 		var isShooting = isAimingWithStick || isAimingWithTouch || isShootingWithMouse;
 
-		move(isShooting ? speed * SHOOTING_SPEED_FACTOR : speed);
+		move(isShooting ? speed * SHOOTING_SPEED_FACTOR : speed, delta);
 
 		if (isAimingWithStick) {
 			aimX = shootX;
@@ -144,7 +143,7 @@ class Player extends Sprite {
 		aimY = camera.screenToWorldY(touchY) - collider.centerY;
 	}
 
-	function move(currentSpeed:Float):Void {
+	function move(currentSpeed:Float, delta:Float):Void {
 		var dx = Input.getGamepadAxis(GamepadAxis.LeftX);
 		var dy = Input.getGamepadAxis(GamepadAxis.LeftY);
 		if (Input.isKeyPressed(Key.A)) {
@@ -174,7 +173,7 @@ class Player extends Sprite {
 			dy /= length;
 		}
 
-		translate(dx * currentSpeed * Time.deltaSeconds, dy * currentSpeed * Time.deltaSeconds);
+		translate(dx * currentSpeed * delta, dy * currentSpeed * delta);
 		World.keepInside(collider);
 	}
 

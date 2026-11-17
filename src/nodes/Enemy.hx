@@ -1,6 +1,5 @@
 package nodes;
 
-import fried.Time;
 import game.GameState;
 import game.World;
 import fried.audio.Sound;
@@ -51,7 +50,7 @@ class Enemy extends Sprite {
 		};
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		var targetCollider = target.collider;
 		if (collider.overlaps(targetCollider)) {
 			target.health.takeDamage(CONTACT_DAMAGE);
@@ -64,7 +63,7 @@ class Enemy extends Sprite {
 		var distance = Math.sqrt(dx * dx + dy * dy);
 		if (distance > 0) {
 			rotation = Math.atan2(dy, dx) * 180 / Math.PI + 90;
-			var step = Math.min(MAX_SPEED, BASE_SPEED + GameState.difficultyStep() * SPEED_PER_STEP) * Time.deltaSeconds;
+			var step = Math.min(MAX_SPEED, BASE_SPEED + GameState.difficultyStep() * SPEED_PER_STEP) * delta;
 			translate(dx / distance * step, dy / distance * step);
 		}
 

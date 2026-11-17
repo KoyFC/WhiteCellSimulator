@@ -1,6 +1,5 @@
 package nodes;
 
-import fried.Time;
 import fried.graphics.Texture;
 import game.GameState;
 import game.World;
@@ -43,7 +42,7 @@ class EnemySpawner extends Node {
 		}
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		var index = enemies.length;
 		while (index-- > 0) {
 			var enemy = enemies[index];
@@ -54,7 +53,7 @@ class EnemySpawner extends Node {
 		if (enemies.length >= MAX_ENEMIES) {
 			return;
 		}
-		spawnTimer -= Time.deltaSeconds;
+		spawnTimer -= delta;
 		if (spawnTimer <= 0) {
 			spawnTimer = Math.max(MIN_INTERVAL, BASE_INTERVAL - GameState.difficultyStep() * INTERVAL_PER_STEP);
 			spawn();

@@ -24,7 +24,7 @@ class CameraFollow extends Node {
 		}
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		if (target.isDestroyed) {
 			return;
 		}

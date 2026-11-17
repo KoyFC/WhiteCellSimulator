@@ -1,6 +1,5 @@
 package nodes;
 
-import fried.Time;
 import fried.audio.Sound;
 import fried.input.GamepadButton;
 import fried.input.Input;
@@ -22,9 +21,9 @@ class MenuController extends Node {
 		this.nextScene = nextScene;
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		if (inputDelay > 0) {
-			inputDelay -= Time.deltaSeconds;
+			inputDelay -= delta;
 			return;
 		}
 		if (Input.isKeyDown(Key.Space) || Input.isKeyDown(Key.Enter) || Input.isGamepadButtonDown(GamepadButton.Start)

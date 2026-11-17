@@ -29,7 +29,7 @@ class TextBinding extends Node {
 		refresh();
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		refresh();
 	}
 

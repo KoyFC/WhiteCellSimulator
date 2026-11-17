@@ -1,6 +1,5 @@
 package nodes;
 
-import fried.Time;
 import game.World;
 import fried.physics.Collider;
 import fried.physics.Physics;
@@ -40,8 +39,8 @@ class Projectile extends Sprite {
 		active = false;
 	}
 
-	override function update():Void {
-		translate(velocityX * Time.deltaSeconds, velocityY * Time.deltaSeconds);
+	override function update(delta:Float):Void {
+		translate(velocityX * delta, velocityY * delta);
 		if (collider.right < 0 || collider.left > World.WIDTH || collider.bottom < 0 || collider.top > World.HEIGHT) {
 			deactivate();
 			return;

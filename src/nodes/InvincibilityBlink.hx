@@ -23,7 +23,7 @@ class InvincibilityBlink extends Node {
 		}
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		sprite.visible = !health.isInvincible || Std.int(health.invincibilityTimer * BLINKS_PER_SECOND) % 2 == 1;
 	}
 }

@@ -38,7 +38,7 @@ class GameController extends Node {
 		SceneManager.loadAdditive(interfaceScene);
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		if (!isGameOver) {
 			return;
 		}

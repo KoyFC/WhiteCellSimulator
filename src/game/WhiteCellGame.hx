@@ -32,7 +32,7 @@ class WhiteCellGame extends Game {
 		}
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		if (Input.isKeyDown(Key.Escape) || Input.isGamepadButtonDown(GamepadButton.Select)) {
 			Application.quit();
 		}

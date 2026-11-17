@@ -1,6 +1,5 @@
 package nodes;
 
-import fried.Time;
 import fried.scene.Node;
 
 // Hit points and the short invincibility after a hit. A child of what can be hurt.
@@ -44,9 +43,9 @@ class Health extends Node {
 		return true;
 	}
 
-	override function update():Void {
+	override function update(delta:Float):Void {
 		if (invincibilityTimer > 0) {
-			invincibilityTimer -= Time.deltaSeconds;
+			invincibilityTimer -= delta;
 		}
 	}
 
