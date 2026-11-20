@@ -43,8 +43,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 72
 			},
 			"id": "title",
@@ -86,8 +86,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 48
 			},
 			"id": "score",
@@ -129,8 +129,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 48
 			},
 			"id": "hiscore",
@@ -172,8 +172,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 32
 			},
 			"id": "prompt",

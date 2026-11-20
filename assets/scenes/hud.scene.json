@@ -24,8 +24,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 32
 			},
 			"id": "lives",
@@ -64,8 +64,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 32
 			},
 			"id": "highscore",
@@ -108,8 +108,8 @@
 			},
 			"font": {
 				"minScreenSize": 14,
-				"path": "NunitoSans.ttf",
-				"root": "engine",
+				"path": "UiFont.ttf",
+				"root": "game",
 				"size": 32
 			},
 			"id": "score",
