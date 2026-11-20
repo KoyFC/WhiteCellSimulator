@@ -1,0 +1,127 @@
+{
+	"camera": "camera3d",
+	"name": "Game 3D",
+	"nodes": [
+		{
+			"id": "backdrop",
+			"name": "Backdrop",
+			"type": "Backdrop"
+		},
+		{
+			"colorA": {
+				"a": 255,
+				"b": 50,
+				"g": 50,
+				"r": 110
+			},
+			"colorB": {
+				"a": 255,
+				"b": 70,
+				"g": 70,
+				"r": 135
+			},
+			"height": 1080,
+			"id": "floor",
+			"name": "Floor",
+			"tileSize": 64,
+			"type": "CheckerFloor3D",
+			"width": 1920
+		},
+		{
+			"ambient": 0.5,
+			"id": "light",
+			"name": "Light",
+			"rotationX": 50,
+			"rotationY": -30,
+			"type": "DirectionalLight"
+		},
+		{
+			"id": "scenery",
+			"name": "Scenery",
+			"type": "Scenery3D"
+		},
+		{
+			"children": [
+				{
+					"distance": 5,
+					"height": 15,
+					"id": "camera-follow",
+					"target": "player-hitbox",
+					"type": "CameraFollow3D"
+				}
+			],
+			"far": 80,
+			"fieldOfView": 55,
+			"id": "camera3d",
+			"name": "Camera3D",
+			"type": "Camera3D"
+		},
+		{
+			"id": "projectiles",
+			"initialSize": 20,
+			"name": "Projectiles",
+			"texture": {
+				"path": "anticuerpo.png",
+				"root": "game"
+			},
+			"type": "ProjectilePool"
+		},
+		{
+			"children": [
+				{
+					"height": 20,
+					"id": "player-hitbox",
+					"name": "Hitbox",
+					"type": "Collider",
+					"width": 20
+				},
+				{
+					"id": "player-health",
+					"invincibilityTime": 1.5,
+					"maxHealth": 3,
+					"name": "Health",
+					"type": "Health"
+				},
+				{
+					"id": "player-blink",
+					"name": "Blink",
+					"type": "InvincibilityBlink"
+				}
+			],
+			"id": "player",
+			"name": "Player",
+			"priority": 10,
+			"projectilePool": "projectiles",
+			"scaleX": 4,
+			"scaleY": 4,
+			"speed": 300,
+			"texture": {
+				"path": "white.png",
+				"root": "game"
+			},
+			"type": "Player",
+			"useDigitKeys": false,
+			"x": 920,
+			"y": 500
+		},
+		{
+			"id": "spawner",
+			"name": "EnemySpawner",
+			"target": "player",
+			"texture": {
+				"path": "virus.png",
+				"root": "game"
+			},
+			"type": "EnemySpawner"
+		},
+		{
+			"gameOverScene": "gameover",
+			"id": "controller",
+			"interfaceScene": "hud",
+			"name": "Controller",
+			"player": "player",
+			"type": "GameController"
+		}
+	],
+	"version": 2
+}
