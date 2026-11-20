@@ -54,6 +54,7 @@
 			"fieldOfView": 55,
 			"id": "camera3d",
 			"name": "Camera3D",
+			"near": 10,
 			"type": "Camera3D"
 		},
 		{
