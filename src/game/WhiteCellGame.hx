@@ -5,6 +5,7 @@ import fried.Game;
 import fried.Project;
 import fried.Window;
 import fried.audio.Music;
+import fried.audio.Sound;
 import fried.graphics.Color;
 import fried.graphics.Renderer;
 import fried.input.GamepadButton;
@@ -20,6 +21,7 @@ class WhiteCellGame extends Game {
 	override function start():Void {
 		GameState.loadHighScore();
 		GameAudio.music = new Music(Assets.game("sounds/music.wav"));
+		Sound.from(Assets.game("sounds/game_over.wav"));
 
 		if (Window.maxCount > 1) {
 			touchWindow = new Window(Project.windowTitle(), 320, 240);
