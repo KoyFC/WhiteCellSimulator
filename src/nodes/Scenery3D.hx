@@ -12,6 +12,7 @@ import game.World3D;
 @:serializable
 class Scenery3D extends Node3D {
 	static inline var WALL_HEIGHT = 0.6;
+	static inline var SINK = 0.5;
 	static inline var WALL_THICKNESS = 1.5;
 	static inline var SPACING = 7.0;
 
@@ -23,11 +24,11 @@ class Scenery3D extends Node3D {
 	override function ready():Void {
 		var width = World.WIDTH / World3D.UNIT;
 		var depth = World.HEIGHT / World3D.UNIT;
-		addBox(width / 2, -0.07, depth / 2, 140, 0.1, 120, Color.rgb(70, 14, 26));
-		addBox(width / 2, WALL_HEIGHT / 2, -WALL_THICKNESS / 2, width + WALL_THICKNESS * 2, WALL_HEIGHT, WALL_THICKNESS, Color.rgb(120, 30, 44));
-		addBox(width / 2, WALL_HEIGHT / 2, depth + WALL_THICKNESS / 2, width + WALL_THICKNESS * 2, WALL_HEIGHT, WALL_THICKNESS, Color.rgb(120, 30, 44));
-		addBox(-WALL_THICKNESS / 2, WALL_HEIGHT / 2, depth / 2, WALL_THICKNESS, WALL_HEIGHT, depth, Color.rgb(120, 30, 44));
-		addBox(width + WALL_THICKNESS / 2, WALL_HEIGHT / 2, depth / 2, WALL_THICKNESS, WALL_HEIGHT, depth, Color.rgb(120, 30, 44));
+		addBox(width / 2, -SINK - 0.05, depth / 2, 140, 0.1, 120, Color.rgb(70, 14, 26));
+		addBox(width / 2, (WALL_HEIGHT - SINK) / 2, -WALL_THICKNESS / 2, width + WALL_THICKNESS * 2, WALL_HEIGHT + SINK, WALL_THICKNESS, Color.rgb(120, 30, 44));
+		addBox(width / 2, (WALL_HEIGHT - SINK) / 2, depth + WALL_THICKNESS / 2, width + WALL_THICKNESS * 2, WALL_HEIGHT + SINK, WALL_THICKNESS, Color.rgb(120, 30, 44));
+		addBox(-WALL_THICKNESS / 2, (WALL_HEIGHT - SINK) / 2, depth / 2, WALL_THICKNESS, WALL_HEIGHT + SINK, depth, Color.rgb(120, 30, 44));
+		addBox(width + WALL_THICKNESS / 2, (WALL_HEIGHT - SINK) / 2, depth / 2, WALL_THICKNESS, WALL_HEIGHT + SINK, depth, Color.rgb(120, 30, 44));
 		addBox(width / 2, WALL_HEIGHT + 0.1, -WALL_THICKNESS / 2, width + WALL_THICKNESS * 2, 0.2, WALL_THICKNESS, Color.rgb(176, 58, 70));
 		addBox(width / 2, WALL_HEIGHT + 0.1, depth + WALL_THICKNESS / 2, width + WALL_THICKNESS * 2, 0.2, WALL_THICKNESS, Color.rgb(176, 58, 70));
 		addBox(-WALL_THICKNESS / 2, WALL_HEIGHT + 0.1, depth / 2, WALL_THICKNESS, 0.2, depth, Color.rgb(176, 58, 70));
@@ -52,6 +53,7 @@ class Scenery3D extends Node3D {
 				var cell = new MeshInstance();
 				cell.mesh = VoxelModels.bloodCell();
 				cell.x = x;
+				cell.y = -SINK;
 				cell.z = z;
 				cell.rotationY = random(index, 3) * 360;
 				cell.setScale(2.5 + random(index, 4) * 2.5);
