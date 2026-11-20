@@ -51,7 +51,7 @@
 			"maxViewFraction": 0.92,
 			"name": "Title",
 			"offsetX": 0,
-			"offsetY": -46.0,
+			"offsetY": -80.0,
 			"paddingX": 20,
 			"paddingY": 10,
 			"pivotX": 0.5,
@@ -94,12 +94,59 @@
 			"maxViewFraction": 0.92,
 			"name": "Hi-Score",
 			"offsetX": 0,
-			"offsetY": 22.0,
+			"offsetY": -12.0,
 			"paddingX": 20,
 			"paddingY": 10,
 			"pivotX": 0.5,
 			"pivotY": 0.5,
 			"text": "Hi-Score: 0",
+			"type": "HudLabel"
+		},
+		{
+			"anchorMaxX": 0.5,
+			"anchorMaxY": 0.5,
+			"anchorMinX": 0.5,
+			"anchorMinY": 0.5,
+			"backgroundColor": {
+				"a": 255,
+				"b": 0,
+				"g": 0,
+				"r": 0
+			},
+			"children": [
+				{
+					"format": "< {value} >",
+					"id": "mode-binding",
+					"source": "mode",
+					"type": "TextBinding"
+				},
+				{
+					"id": "mode-selector",
+					"type": "ModeSelector"
+				}
+			],
+			"color": {
+				"a": 255,
+				"b": 255,
+				"g": 255,
+				"r": 255
+			},
+			"font": {
+				"minScreenSize": 14,
+				"path": "NunitoSans.ttf",
+				"root": "engine",
+				"size": 32
+			},
+			"id": "mode",
+			"maxViewFraction": 0.92,
+			"name": "Mode",
+			"offsetX": 0,
+			"offsetY": 56.0,
+			"paddingX": 20,
+			"paddingY": 10,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"text": "< 2D >",
 			"type": "HudLabel"
 		},
 		{
@@ -137,7 +184,7 @@
 			"maxViewFraction": 0.92,
 			"name": "Prompt",
 			"offsetX": 0,
-			"offsetY": 112.0,
+			"offsetY": 124.0,
 			"paddingX": 20,
 			"paddingY": 10,
 			"pivotX": 0.5,
@@ -150,6 +197,7 @@
 			"inputDelay": 0,
 			"name": "Controller",
 			"nextScene": "game",
+			"nextScene3D": "game3d",
 			"type": "MenuController"
 		}
 	],

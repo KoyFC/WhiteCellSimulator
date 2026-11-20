@@ -193,6 +193,7 @@
 			"inputDelay": 0.75,
 			"name": "Controller",
 			"nextScene": "game",
+			"nextScene3D": "game3d",
 			"type": "MenuController"
 		}
 	],
