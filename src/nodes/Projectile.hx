@@ -1,6 +1,8 @@
 package nodes;
 
 import game.World;
+import game.GameMode;
+import game.VoxelModels;
 import fried.physics.Collider;
 import fried.physics.Physics;
 import fried.graphics.Texture;
@@ -20,6 +22,16 @@ class Projectile extends Sprite {
 		super(texture);
 		name = "Projectile";
 		collider = addChild(new Collider(texture.width, texture.height));
+	}
+
+	override function ready():Void {
+		MeshMirror.attach(this, VoxelModels.antibody(GameMode.step(1, 4)));
+	}
+
+	override function draw():Void {
+		if (scene.camera3D == null) {
+			super.draw();
+		}
 	}
 
 	public function fire(x:Float, y:Float, directionX:Float, directionY:Float, speed:Float):Void {

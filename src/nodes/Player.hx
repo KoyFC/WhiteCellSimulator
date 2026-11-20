@@ -14,6 +14,9 @@ import fried.scene.Sprite;
 import game.GameState;
 import game.TouchPad;
 import game.World;
+import game.World3D;
+import game.GameMode;
+import game.VoxelModels;
 
 // Twin stick controls: WASD, the left stick or the d-pad move, and the arrows,
 // the face buttons, the right stick, a touch or the mouse aim. With
@@ -64,9 +67,10 @@ class Player extends Sprite {
 		camera = scene.camera;
 		collider = findChild(Collider);
 		health = findChild(Health);
-		if (camera == null || projectilePool == null || collider == null || health == null) {
+		if ((camera == null && scene.camera3D == null) || projectilePool == null || collider == null || health == null) {
 			throw 'A Player needs a scene camera, a projectile pool, and a Collider and a Health child on $name.';
 		}
+		MeshMirror.attach(this, VoxelModels.cell(GameMode.step(1, 3)));
 		GameState.lives = health.maxHealth;
 		shootSound = Sound.from(Assets.game("sounds/shoot.wav"));
 		var hurtSound = Sound.from(Assets.game("sounds/player_hurt.wav"));
@@ -117,8 +121,7 @@ class Player extends Sprite {
 		} else if (isAimingWithPointer) {
 			// Recomputed every frame rather than when the mouse moves, since the
 			// camera moving under a still pointer changes what it points at.
-			aimX = camera.screenToWorldX(Input.mouseX) - collider.centerX;
-			aimY = camera.screenToWorldY(Input.mouseY) - collider.centerY;
+			aimAtPoint(Input.mouseX, Input.mouseY);
 		}
 		if (aimX != 0 || aimY != 0) {
 			rotation = Math.atan2(aimY, aimX) * 180 / Math.PI + 90;
@@ -139,8 +142,23 @@ class Player extends Sprite {
 			aimY = touchY - TouchPad.height / 2;
 			return;
 		}
-		aimX = camera.screenToWorldX(touchX) - collider.centerX;
-		aimY = camera.screenToWorldY(touchY) - collider.centerY;
+		aimAtPoint(touchX, touchY);
+	}
+
+	function aimAtPoint(screenX:Float, screenY:Float):Void {
+		if (camera != null) {
+			aimX = camera.screenToWorldX(screenX) - collider.centerX;
+			aimY = camera.screenToWorldY(screenY) - collider.centerY;
+		} else if (World3D.screenToWorld(scene.camera3D, screenX, screenY, scene.viewWidth, scene.viewHeight)) {
+			aimX = World3D.resultX - collider.centerX;
+			aimY = World3D.resultY - collider.centerY;
+		}
+	}
+
+	override function draw():Void {
+		if (camera != null) {
+			super.draw();
+		}
 	}
 
 	function move(currentSpeed:Float, delta:Float):Void {

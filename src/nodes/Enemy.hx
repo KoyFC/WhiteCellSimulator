@@ -2,6 +2,8 @@ package nodes;
 
 import game.GameState;
 import game.World;
+import game.GameMode;
+import game.VoxelModels;
 import fried.audio.Sound;
 import fried.io.Assets;
 import fried.physics.Collider;
@@ -36,6 +38,7 @@ class Enemy extends Sprite {
 	}
 
 	override function ready():Void {
+		MeshMirror.attach(this, VoxelModels.virus(GameMode.step(1, 4)));
 		var hitSound = Sound.from(Assets.game("sounds/enemy_hit.wav"));
 		var deathSound = Sound.from(Assets.game("sounds/enemy_death.wav"));
 		health.onDamage = function(_) {
@@ -48,6 +51,12 @@ class Enemy extends Sprite {
 			GameState.addScore(BASE_POINTS + GameState.difficultyStep() * POINTS_PER_STEP);
 			destroy();
 		};
+	}
+
+	override function draw():Void {
+		if (scene.camera3D == null) {
+			super.draw();
+		}
 	}
 
 	override function update(delta:Float):Void {
