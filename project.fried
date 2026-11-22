@@ -1,11 +1,13 @@
 {
+	"autoload": [
+		"GameShell"
+	],
 	"display": {
 		"filter": "nearest",
 		"height": 540,
 		"mode": "height",
 		"width": 960
 	},
-	"gameClass": "game.WhiteCellGame",
 	"name": "WhiteCellSimulator",
 	"organization": "KoyFC",
 	"startScene": "start",

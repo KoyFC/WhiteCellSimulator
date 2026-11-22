@@ -1,7 +1,6 @@
-package game;
+package nodes;
 
 import fried.Application;
-import fried.Game;
 import fried.Project;
 import fried.Window;
 import fried.audio.Music;
@@ -12,13 +11,23 @@ import fried.input.GamepadButton;
 import fried.input.Input;
 import fried.input.Key;
 import fried.io.Assets;
+import fried.scene.Node;
+import game.GameAudio;
+import game.GameState;
+import game.TouchPad;
+import game.TouchPadLayer;
 
-// What this game needs beyond its scenes: the saved score, the music that outlives a scene, and the 3DS's touch screen, which is a second window.
-class WhiteCellGame extends Game {
+// What this game needs beyond its scenes, kept as an autoload so it outlives them: the saved score, the music, and the 3DS's touch screen, which is a second window.
+@:serializable
+class GameShell extends Node {
 	var touchWindow:Window;
 	var touchRenderer:Renderer;
 
-	override function start():Void {
+	public function new() {
+		super("GameShell");
+	}
+
+	override function ready():Void {
 		GameState.loadHighScore();
 		GameAudio.music = new Music(Assets.game("sounds/music.wav"));
 		Sound.from(Assets.game("sounds/game_over.wav"));
@@ -40,7 +49,7 @@ class WhiteCellGame extends Game {
 		}
 	}
 
-	override function shutdown():Void {
+	override function destroyed():Void {
 		GameState.saveHighScore();
 		GameAudio.music.destroy();
 		if (touchRenderer != null) {
