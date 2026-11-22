@@ -1,11 +1,13 @@
 package nodes;
 
 import fried.Application;
+import fried.Bootstrap;
 import fried.Project;
 import fried.Window;
 import fried.audio.Music;
 import fried.audio.Sound;
 import fried.graphics.Color;
+import fried.graphics.Font;
 import fried.graphics.Renderer;
 import fried.input.GamepadButton;
 import fried.input.Input;
@@ -13,6 +15,7 @@ import fried.input.Key;
 import fried.io.Assets;
 import fried.scene.Node;
 import game.GameAudio;
+import game.FpsLayer;
 import game.GameState;
 import game.TouchPad;
 import game.TouchPadLayer;
@@ -22,6 +25,7 @@ import game.TouchPadLayer;
 class GameShell extends Node {
 	var touchWindow:Window;
 	var touchRenderer:Renderer;
+	var fpsFont:Font;
 
 	public function new() {
 		super("GameShell");
@@ -41,6 +45,11 @@ class GameShell extends Node {
 			TouchPad.height = touchRenderer.height;
 			TouchPad.isAvailable = true;
 		}
+
+		// The second screen where there is one, so the counter does not cover the game.
+		var fpsRenderer = touchRenderer != null ? touchRenderer : Bootstrap.renderer;
+		fpsFont = Font.from(Assets.game("UiFont.ttf"), fpsRenderer.legibleSize(24, 12));
+		fpsRenderer.pushLayer(new FpsLayer(fpsFont));
 	}
 
 	override function update(delta:Float):Void {
@@ -52,6 +61,7 @@ class GameShell extends Node {
 	override function destroyed():Void {
 		GameState.saveHighScore();
 		GameAudio.music.destroy();
+		fpsFont.destroy();
 		if (touchRenderer != null) {
 			Application.destroyRenderer(touchRenderer);
 			touchWindow.destroy();
