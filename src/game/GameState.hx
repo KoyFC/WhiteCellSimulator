@@ -10,6 +10,8 @@ class GameState {
 	public static var score(default, null):Int = 0;
 	public static var highScore(default, null):Int = 0;
 	public static var lives:Int = 0;
+	public static var inGame:Bool = false;
+	public static var isPaused:Bool = false;
 
 	static var savedHighScore:Int = 0;
 
@@ -27,6 +29,7 @@ class GameState {
 	public static function reset():Void {
 		score = 0;
 		lives = 0;
+		isPaused = false;
 	}
 
 	public static function loadHighScore():Void {

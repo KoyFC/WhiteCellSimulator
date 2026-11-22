@@ -60,6 +60,9 @@ class Enemy extends Sprite {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		var targetCollider = target.collider;
 		if (collider.overlaps(targetCollider)) {
 			target.health.takeDamage(CONTACT_DAMAGE);

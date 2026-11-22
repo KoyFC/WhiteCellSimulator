@@ -41,6 +41,7 @@ class GameShell extends Node {
 			touchRenderer = Application.createRenderer(touchWindow);
 			touchRenderer.drawColor = Color.rgb(0, 0, 0);
 			touchRenderer.pushLayer(new TouchPadLayer());
+			TouchPad.renderer = touchRenderer;
 			TouchPad.width = touchRenderer.width;
 			TouchPad.height = touchRenderer.height;
 			TouchPad.isAvailable = true;
@@ -53,7 +54,7 @@ class GameShell extends Node {
 	}
 
 	override function update(delta:Float):Void {
-		if (Input.isKeyDown(Key.Escape) || Input.isGamepadButtonDown(GamepadButton.Select)) {
+		if (!GameState.inGame && (Input.isKeyDown(Key.Escape) || Input.isGamepadButtonDown(GamepadButton.Select))) {
 			Application.quit();
 		}
 	}

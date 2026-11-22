@@ -1,6 +1,7 @@
 {
 	"autoload": [
-		"GameShell"
+		"GameShell",
+		"PauseMenu"
 	],
 	"display": {
 		"filter": "nearest",
@@ -15,6 +16,7 @@
 	"vita": {
 		"titleId": "WHIT00001"
 	},
+	"vsync": false,
 	"window": {
 		"title": "Blood Borne Defense"
 	}

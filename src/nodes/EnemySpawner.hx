@@ -43,6 +43,9 @@ class EnemySpawner extends Node {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		var index = enemies.length;
 		while (index-- > 0) {
 			var enemy = enemies[index];

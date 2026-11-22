@@ -7,6 +7,7 @@ import fried.physics.Collider;
 import fried.physics.Physics;
 import fried.graphics.Texture;
 import fried.scene.Sprite;
+import game.GameState;
 
 class Projectile extends Sprite {
 	static inline var DAMAGE = 1;
@@ -52,6 +53,9 @@ class Projectile extends Sprite {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		translate(velocityX * delta, velocityY * delta);
 		if (collider.right < 0 || collider.left > World.WIDTH || collider.bottom < 0 || collider.top > World.HEIGHT) {
 			deactivate();

@@ -3,6 +3,7 @@ package nodes;
 import fried.physics.Collider;
 import fried.scene.Camera;
 import fried.scene.Node;
+import game.GameState;
 import game.World;
 
 // Keeps the Collider it follows in view, inside the world. A child of the Camera it moves.
@@ -25,6 +26,9 @@ class CameraFollow extends Node {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		if (target.isDestroyed) {
 			return;
 		}

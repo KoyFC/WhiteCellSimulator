@@ -83,6 +83,9 @@ class Player extends Sprite {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		if (shootCooldown > 0) {
 			shootCooldown -= delta;
 		}

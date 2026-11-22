@@ -1,6 +1,7 @@
 package nodes;
 
 import fried.scene.Node;
+import game.GameState;
 
 // Hit points and the short invincibility after a hit. A child of what can be hurt.
 @:serializable
@@ -44,6 +45,9 @@ class Health extends Node {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		if (invincibilityTimer > 0) {
 			invincibilityTimer -= delta;
 		}

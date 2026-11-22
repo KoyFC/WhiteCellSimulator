@@ -31,6 +31,7 @@ class GameController extends Node {
 			isGameOver = true;
 		};
 		GameState.reset();
+		GameState.inGame = true;
 		GameState.lives = health.maxHealth;
 		GameAudio.music.play();
 	}
@@ -40,6 +41,7 @@ class GameController extends Node {
 			return;
 		}
 		isGameOver = false;
+		GameState.inGame = false;
 		Log.info('Game over with ${GameState.score} points, high score ${GameState.highScore}');
 		GameState.saveHighScore();
 		GameAudio.music.stop();

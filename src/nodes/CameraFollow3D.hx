@@ -3,6 +3,7 @@ package nodes;
 import fried.physics.Collider;
 import fried.scene.Camera3D;
 import fried.scene.Node;
+import game.GameState;
 import game.World3D;
 
 @:serializable
@@ -29,6 +30,9 @@ class CameraFollow3D extends Node {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		if (target.isDestroyed) {
 			return;
 		}

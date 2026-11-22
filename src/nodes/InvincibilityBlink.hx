@@ -2,6 +2,7 @@ package nodes;
 
 import fried.scene.Node;
 import fried.scene.Sprite;
+import game.GameState;
 
 // Blinks the Sprite it is a child of while its Health is invincible.
 @:serializable
@@ -24,6 +25,9 @@ class InvincibilityBlink extends Node {
 	}
 
 	override function update(delta:Float):Void {
+		if (GameState.isPaused) {
+			return;
+		}
 		sprite.visible = !health.isInvincible || Std.int(health.invincibilityTimer * BLINKS_PER_SECOND) % 2 == 1;
 	}
 }
