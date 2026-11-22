@@ -118,10 +118,14 @@
 		{
 			"gameOverScene": "gameover",
 			"id": "controller",
-			"interfaceScene": "hud",
 			"name": "Controller",
 			"player": "player",
 			"type": "GameController"
+		},
+		{
+			"id": "hud",
+			"instance": "hud",
+			"name": "HUD"
 		}
 	],
 	"version": 2

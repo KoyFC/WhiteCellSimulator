@@ -2,127 +2,135 @@
 	"name": "HUD",
 	"nodes": [
 		{
-			"backgroundColor": {
-				"a": 255,
-				"b": 0,
-				"g": 0,
-				"r": 0
-			},
 			"children": [
 				{
-					"format": "Lives: {value}",
-					"id": "lives-binding",
-					"source": "lives",
-					"type": "TextBinding"
-				}
-			],
-			"color": {
-				"a": 255,
-				"b": 0,
-				"g": 0,
-				"r": 255
-			},
-			"font": {
-				"minScreenSize": 14,
-				"path": "UiFont.ttf",
-				"root": "game",
-				"size": 32
-			},
-			"id": "lives",
-			"name": "Lives",
-			"offsetX": 20,
-			"offsetY": 15,
-			"paddingX": 10,
-			"paddingY": 5,
-			"text": "Lives: 3",
-			"type": "HudLabel"
-		},
-		{
-			"anchorMaxX": 1,
-			"anchorMaxY": 0,
-			"anchorMinX": 1,
-			"anchorMinY": 0,
-			"backgroundColor": {
-				"a": 255,
-				"b": 0,
-				"g": 0,
-				"r": 0
-			},
-			"children": [
+					"backgroundColor": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 0
+					},
+					"children": [
+						{
+							"format": "Lives: {value}",
+							"id": "lives-binding",
+							"source": "lives",
+							"type": "TextBinding"
+						}
+					],
+					"color": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 255
+					},
+					"font": {
+						"minScreenSize": 14,
+						"path": "UiFont.ttf",
+						"root": "game",
+						"size": 32
+					},
+					"id": "lives",
+					"name": "Lives",
+					"offsetX": 20,
+					"offsetY": 15,
+					"paddingX": 10,
+					"paddingY": 5,
+					"text": "Lives: 3",
+					"type": "HudLabel"
+				},
 				{
-					"format": "Hi-Score: {value}",
-					"id": "highscore-binding",
-					"source": "highScore",
-					"type": "TextBinding"
-				}
-			],
-			"color": {
-				"a": 255,
-				"b": 0,
-				"g": 255,
-				"r": 255
-			},
-			"font": {
-				"minScreenSize": 14,
-				"path": "UiFont.ttf",
-				"root": "game",
-				"size": 32
-			},
-			"id": "highscore",
-			"maxViewFraction": 0.92,
-			"name": "High Score",
-			"offsetX": -20,
-			"offsetY": 15,
-			"paddingX": 10,
-			"paddingY": 5,
-			"pivotX": 1,
-			"pivotY": 0,
-			"text": "Hi-Score: 0",
-			"type": "HudLabel"
-		},
-		{
-			"anchorMaxX": 1,
-			"anchorMaxY": 0,
-			"anchorMinX": 1,
-			"anchorMinY": 0,
-			"backgroundColor": {
-				"a": 255,
-				"b": 0,
-				"g": 0,
-				"r": 0
-			},
-			"below": "highscore",
-			"children": [
+					"anchorMaxX": 1,
+					"anchorMaxY": 0,
+					"anchorMinX": 1,
+					"anchorMinY": 0,
+					"backgroundColor": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 0
+					},
+					"children": [
+						{
+							"format": "Hi-Score: {value}",
+							"id": "highscore-binding",
+							"source": "highScore",
+							"type": "TextBinding"
+						}
+					],
+					"color": {
+						"a": 255,
+						"b": 0,
+						"g": 255,
+						"r": 255
+					},
+					"font": {
+						"minScreenSize": 14,
+						"path": "UiFont.ttf",
+						"root": "game",
+						"size": 32
+					},
+					"id": "highscore",
+					"maxViewFraction": 0.92,
+					"name": "High Score",
+					"offsetX": -20,
+					"offsetY": 15,
+					"paddingX": 10,
+					"paddingY": 5,
+					"pivotX": 1,
+					"pivotY": 0,
+					"text": "Hi-Score: 0",
+					"type": "HudLabel"
+				},
 				{
-					"format": "Score: {value}",
-					"id": "score-binding",
-					"source": "score",
-					"type": "TextBinding"
+					"anchorMaxX": 1,
+					"anchorMaxY": 0,
+					"anchorMinX": 1,
+					"anchorMinY": 0,
+					"backgroundColor": {
+						"a": 255,
+						"b": 0,
+						"g": 0,
+						"r": 0
+					},
+					"below": "highscore",
+					"children": [
+						{
+							"format": "Score: {value}",
+							"id": "score-binding",
+							"source": "score",
+							"type": "TextBinding"
+						}
+					],
+					"color": {
+						"a": 255,
+						"b": 255,
+						"g": 255,
+						"r": 255
+					},
+					"font": {
+						"minScreenSize": 14,
+						"path": "UiFont.ttf",
+						"root": "game",
+						"size": 32
+					},
+					"id": "score",
+					"maxViewFraction": 0.92,
+					"name": "Score",
+					"offsetX": -20,
+					"offsetY": 15,
+					"paddingX": 10,
+					"paddingY": 5,
+					"pivotX": 1,
+					"pivotY": 0,
+					"text": "Score: 0",
+					"type": "HudLabel"
 				}
 			],
-			"color": {
-				"a": 255,
-				"b": 255,
-				"g": 255,
-				"r": 255
-			},
-			"font": {
-				"minScreenSize": 14,
-				"path": "UiFont.ttf",
-				"root": "game",
-				"size": 32
-			},
-			"id": "score",
-			"maxViewFraction": 0.92,
-			"name": "Score",
-			"offsetX": -20,
-			"offsetY": 15,
-			"paddingX": 10,
-			"paddingY": 5,
-			"pivotX": 1,
-			"pivotY": 0,
-			"text": "Score: 0",
-			"type": "HudLabel"
+			"id": "hud",
+			"layer": 1,
+			"name": "HUD",
+			"type": "CanvasLayer"
 		}
 	],
 	"version": 2

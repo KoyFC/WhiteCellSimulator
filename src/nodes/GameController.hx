@@ -8,18 +8,16 @@ import fried.scene.SceneManager;
 import game.GameAudio;
 import game.GameState;
 
-// Runs one game: the music and the interface while it lasts, and the way out to the game over scene when the player dies.
+// Runs one game: the music while it lasts, and the way out to the game over scene when the player dies.
 @:serializable
 class GameController extends Node {
-	public var interfaceScene:String;
 	public var gameOverScene:String;
 	public var player:Player;
 
 	var isGameOver:Bool = false;
 
-	public function new(interfaceScene:String = "", gameOverScene:String = "", player:Player = null) {
+	public function new(gameOverScene:String = "", player:Player = null) {
 		super("GameController");
-		this.interfaceScene = interfaceScene;
 		this.gameOverScene = gameOverScene;
 		this.player = player;
 	}
@@ -35,7 +33,6 @@ class GameController extends Node {
 		GameState.reset();
 		GameState.lives = health.maxHealth;
 		GameAudio.music.play();
-		SceneManager.loadAdditive(interfaceScene);
 	}
 
 	override function update(delta:Float):Void {
